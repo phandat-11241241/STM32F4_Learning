@@ -1,0 +1,534 @@
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"main.c"
+  16              		.text
+  17              		.section	.text.MX_GPIO_Init,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	MX_GPIO_Init:
+  24              		@ args = 0, pretend = 0, frame = 8
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 82B0     		sub	sp, sp, #8
+  28 0002 0021     		movs	r1, #0
+  29 0004 0091     		str	r1, [sp]
+  30 0006 0B4B     		ldr	r3, .L3
+  31 0008 1A6B     		ldr	r2, [r3, #48]
+  32 000a 42F00102 		orr	r2, r2, #1
+  33 000e 1A63     		str	r2, [r3, #48]
+  34 0010 1A6B     		ldr	r2, [r3, #48]
+  35 0012 02F00102 		and	r2, r2, #1
+  36 0016 0092     		str	r2, [sp]
+  37 0018 009A     		ldr	r2, [sp]
+  38 001a 0191     		str	r1, [sp, #4]
+  39 001c 1A6B     		ldr	r2, [r3, #48]
+  40 001e 42F00202 		orr	r2, r2, #2
+  41 0022 1A63     		str	r2, [r3, #48]
+  42 0024 1B6B     		ldr	r3, [r3, #48]
+  43 0026 03F00203 		and	r3, r3, #2
+  44 002a 0193     		str	r3, [sp, #4]
+  45 002c 019B     		ldr	r3, [sp, #4]
+  46 002e 02B0     		add	sp, sp, #8
+  47              		@ sp needed
+  48 0030 7047     		bx	lr
+  49              	.L4:
+  50 0032 00BF     		.align	2
+  51              	.L3:
+  52 0034 00380240 		.word	1073887232
+  54              		.section	.text.Power_Management_1,"ax",%progbits
+  55              		.align	1
+  56              		.global	Power_Management_1
+  57              		.syntax unified
+  58              		.thumb
+  59              		.thumb_func
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s 			page 2
+
+
+  61              	Power_Management_1:
+  62              		@ args = 0, pretend = 0, frame = 8
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64 0000 00B5     		push	{lr}
+  65 0002 87B0     		sub	sp, sp, #28
+  66 0004 0023     		movs	r3, #0
+  67 0006 8DF81730 		strb	r3, [sp, #23]
+  68 000a 4FF47A73 		mov	r3, #1000
+  69 000e 0293     		str	r3, [sp, #8]
+  70 0010 0123     		movs	r3, #1
+  71 0012 0193     		str	r3, [sp, #4]
+  72 0014 0DF11702 		add	r2, sp, #23
+  73 0018 0092     		str	r2, [sp]
+  74 001a 6B22     		movs	r2, #107
+  75 001c D021     		movs	r1, #208
+  76 001e 0348     		ldr	r0, .L7
+  77 0020 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+  78 0024 07B0     		add	sp, sp, #28
+  79              		@ sp needed
+  80 0026 5DF804FB 		ldr	pc, [sp], #4
+  81              	.L8:
+  82 002a 00BF     		.align	2
+  83              	.L7:
+  84 002c 00000000 		.word	hi2c1
+  86              		.section	.text.Sample_rate_cfg,"ax",%progbits
+  87              		.align	1
+  88              		.global	Sample_rate_cfg
+  89              		.syntax unified
+  90              		.thumb
+  91              		.thumb_func
+  93              	Sample_rate_cfg:
+  94              		@ args = 0, pretend = 0, frame = 8
+  95              		@ frame_needed = 0, uses_anonymous_args = 0
+  96 0000 00B5     		push	{lr}
+  97 0002 87B0     		sub	sp, sp, #28
+  98 0004 0723     		movs	r3, #7
+  99 0006 8DF81730 		strb	r3, [sp, #23]
+ 100 000a 4FF47A73 		mov	r3, #1000
+ 101 000e 0293     		str	r3, [sp, #8]
+ 102 0010 0123     		movs	r3, #1
+ 103 0012 0193     		str	r3, [sp, #4]
+ 104 0014 0DF11702 		add	r2, sp, #23
+ 105 0018 0092     		str	r2, [sp]
+ 106 001a 1922     		movs	r2, #25
+ 107 001c D021     		movs	r1, #208
+ 108 001e 0348     		ldr	r0, .L11
+ 109 0020 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 110 0024 07B0     		add	sp, sp, #28
+ 111              		@ sp needed
+ 112 0026 5DF804FB 		ldr	pc, [sp], #4
+ 113              	.L12:
+ 114 002a 00BF     		.align	2
+ 115              	.L11:
+ 116 002c 00000000 		.word	hi2c1
+ 118              		.section	.text.GYRO_ACCEL_cfg,"ax",%progbits
+ 119              		.align	1
+ 120              		.global	GYRO_ACCEL_cfg
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s 			page 3
+
+
+ 121              		.syntax unified
+ 122              		.thumb
+ 123              		.thumb_func
+ 125              	GYRO_ACCEL_cfg:
+ 126              		@ args = 0, pretend = 0, frame = 8
+ 127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 128 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 129 0002 87B0     		sub	sp, sp, #28
+ 130 0004 0023     		movs	r3, #0
+ 131 0006 8DF81730 		strb	r3, [sp, #23]
+ 132 000a 0D4D     		ldr	r5, .L15
+ 133 000c 4FF47A77 		mov	r7, #1000
+ 134 0010 0297     		str	r7, [sp, #8]
+ 135 0012 0124     		movs	r4, #1
+ 136 0014 0194     		str	r4, [sp, #4]
+ 137 0016 0DF11706 		add	r6, sp, #23
+ 138 001a 0096     		str	r6, [sp]
+ 139 001c 2346     		mov	r3, r4
+ 140 001e 1B22     		movs	r2, #27
+ 141 0020 D021     		movs	r1, #208
+ 142 0022 2846     		mov	r0, r5
+ 143 0024 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 144 0028 0297     		str	r7, [sp, #8]
+ 145 002a 0194     		str	r4, [sp, #4]
+ 146 002c 0096     		str	r6, [sp]
+ 147 002e 2346     		mov	r3, r4
+ 148 0030 1C22     		movs	r2, #28
+ 149 0032 D021     		movs	r1, #208
+ 150 0034 2846     		mov	r0, r5
+ 151 0036 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 152 003a 07B0     		add	sp, sp, #28
+ 153              		@ sp needed
+ 154 003c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 155              	.L16:
+ 156 003e 00BF     		.align	2
+ 157              	.L15:
+ 158 0040 00000000 		.word	hi2c1
+ 160              		.section	.text.MPU6050_Init,"ax",%progbits
+ 161              		.align	1
+ 162              		.global	MPU6050_Init
+ 163              		.syntax unified
+ 164              		.thumb
+ 165              		.thumb_func
+ 167              	MPU6050_Init:
+ 168              		@ args = 0, pretend = 0, frame = 8
+ 169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 170 0000 00B5     		push	{lr}
+ 171 0002 87B0     		sub	sp, sp, #28
+ 172 0004 4FF47A73 		mov	r3, #1000
+ 173 0008 0293     		str	r3, [sp, #8]
+ 174 000a 0123     		movs	r3, #1
+ 175 000c 0193     		str	r3, [sp, #4]
+ 176 000e 0DF11702 		add	r2, sp, #23
+ 177 0012 0092     		str	r2, [sp]
+ 178 0014 7522     		movs	r2, #117
+ 179 0016 D021     		movs	r1, #208
+ 180 0018 0848     		ldr	r0, .L21
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s 			page 4
+
+
+ 181 001a FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 182 001e 9DF81730 		ldrb	r3, [sp, #23]	@ zero_extendqisi2
+ 183 0022 682B     		cmp	r3, #104
+ 184 0024 02D0     		beq	.L20
+ 185              	.L17:
+ 186 0026 07B0     		add	sp, sp, #28
+ 187              		@ sp needed
+ 188 0028 5DF804FB 		ldr	pc, [sp], #4
+ 189              	.L20:
+ 190 002c FFF7FEFF 		bl	Power_Management_1
+ 191 0030 FFF7FEFF 		bl	Sample_rate_cfg
+ 192 0034 FFF7FEFF 		bl	GYRO_ACCEL_cfg
+ 193 0038 F5E7     		b	.L17
+ 194              	.L22:
+ 195 003a 00BF     		.align	2
+ 196              	.L21:
+ 197 003c 00000000 		.word	hi2c1
+ 199              		.section	.text.MPU6050_Read_Gyro,"ax",%progbits
+ 200              		.align	1
+ 201              		.global	MPU6050_Read_Gyro
+ 202              		.syntax unified
+ 203              		.thumb
+ 204              		.thumb_func
+ 206              	MPU6050_Read_Gyro:
+ 207              		@ args = 0, pretend = 0, frame = 0
+ 208              		@ frame_needed = 0, uses_anonymous_args = 0
+ 209 0000 10B5     		push	{r4, lr}
+ 210 0002 84B0     		sub	sp, sp, #16
+ 211 0004 4FF47A73 		mov	r3, #1000
+ 212 0008 0293     		str	r3, [sp, #8]
+ 213 000a 0623     		movs	r3, #6
+ 214 000c 0193     		str	r3, [sp, #4]
+ 215 000e 1E4C     		ldr	r4, .L25
+ 216 0010 0094     		str	r4, [sp]
+ 217 0012 0123     		movs	r3, #1
+ 218 0014 4322     		movs	r2, #67
+ 219 0016 D021     		movs	r1, #208
+ 220 0018 1C48     		ldr	r0, .L25+4
+ 221 001a FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 222 001e 2388     		ldrh	r3, [r4]
+ 223 0020 6188     		ldrh	r1, [r4, #2]
+ 224 0022 41EA0321 		orr	r1, r1, r3, lsl #8
+ 225 0026 89B2     		uxth	r1, r1
+ 226 0028 194B     		ldr	r3, .L25+8
+ 227 002a 1980     		strh	r1, [r3]	@ movhi
+ 228 002c A388     		ldrh	r3, [r4, #4]
+ 229 002e E288     		ldrh	r2, [r4, #6]
+ 230 0030 42EA0322 		orr	r2, r2, r3, lsl #8
+ 231 0034 92B2     		uxth	r2, r2
+ 232 0036 174B     		ldr	r3, .L25+12
+ 233 0038 1A80     		strh	r2, [r3]	@ movhi
+ 234 003a 2089     		ldrh	r0, [r4, #8]
+ 235 003c 6389     		ldrh	r3, [r4, #10]
+ 236 003e 43EA0023 		orr	r3, r3, r0, lsl #8
+ 237 0042 9BB2     		uxth	r3, r3
+ 238 0044 1448     		ldr	r0, .L25+16
+ 239 0046 0380     		strh	r3, [r0]	@ movhi
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s 			page 5
+
+
+ 240 0048 07EE901A 		vmov	s15, r1	@ int
+ 241 004c F8EE677A 		vcvt.f32.u32	s15, s15
+ 242 0050 9FED127A 		vldr.32	s14, .L25+20
+ 243 0054 C7EE876A 		vdiv.f32	s13, s15, s14
+ 244 0058 1149     		ldr	r1, .L25+24
+ 245 005a C1ED006A 		vstr.32	s13, [r1]
+ 246 005e 07EE902A 		vmov	s15, r2	@ int
+ 247 0062 F8EE677A 		vcvt.f32.u32	s15, s15
+ 248 0066 C7EE876A 		vdiv.f32	s13, s15, s14
+ 249 006a 0E4A     		ldr	r2, .L25+28
+ 250 006c C2ED006A 		vstr.32	s13, [r2]
+ 251 0070 07EE903A 		vmov	s15, r3	@ int
+ 252 0074 F8EE677A 		vcvt.f32.u32	s15, s15
+ 253 0078 C7EE876A 		vdiv.f32	s13, s15, s14
+ 254 007c 0A4B     		ldr	r3, .L25+32
+ 255 007e C3ED006A 		vstr.32	s13, [r3]
+ 256 0082 04B0     		add	sp, sp, #16
+ 257              		@ sp needed
+ 258 0084 10BD     		pop	{r4, pc}
+ 259              	.L26:
+ 260 0086 00BF     		.align	2
+ 261              	.L25:
+ 262 0088 00000000 		.word	Rec_Data
+ 263 008c 00000000 		.word	hi2c1
+ 264 0090 00000000 		.word	Gyro_X_RAW
+ 265 0094 00000000 		.word	Gyro_Y_RAW
+ 266 0098 00000000 		.word	Gyro_Z_RAW
+ 267 009c 00000343 		.word	1124270080
+ 268 00a0 00000000 		.word	Gx
+ 269 00a4 00000000 		.word	Gy
+ 270 00a8 00000000 		.word	Gz
+ 272              		.section	.text.Error_Handler,"ax",%progbits
+ 273              		.align	1
+ 274              		.global	Error_Handler
+ 275              		.syntax unified
+ 276              		.thumb
+ 277              		.thumb_func
+ 279              	Error_Handler:
+ 280              		@ Volatile: function does not return.
+ 281              		@ args = 0, pretend = 0, frame = 0
+ 282              		@ frame_needed = 0, uses_anonymous_args = 0
+ 283              		@ link register save eliminated.
+ 284              		.syntax unified
+ 285              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 286 0000 72B6     		cpsid i
+ 287              	@ 0 "" 2
+ 288              		.thumb
+ 289              		.syntax unified
+ 290              	.L28:
+ 291 0002 FEE7     		b	.L28
+ 293              		.section	.text.MX_I2C1_Init,"ax",%progbits
+ 294              		.align	1
+ 295              		.syntax unified
+ 296              		.thumb
+ 297              		.thumb_func
+ 299              	MX_I2C1_Init:
+ 300              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s 			page 6
+
+
+ 301              		@ frame_needed = 0, uses_anonymous_args = 0
+ 302 0000 08B5     		push	{r3, lr}
+ 303 0002 0A48     		ldr	r0, .L33
+ 304 0004 0A4B     		ldr	r3, .L33+4
+ 305 0006 0360     		str	r3, [r0]
+ 306 0008 0A4B     		ldr	r3, .L33+8
+ 307 000a 4360     		str	r3, [r0, #4]
+ 308 000c 0023     		movs	r3, #0
+ 309 000e 8360     		str	r3, [r0, #8]
+ 310 0010 C360     		str	r3, [r0, #12]
+ 311 0012 4FF48042 		mov	r2, #16384
+ 312 0016 0261     		str	r2, [r0, #16]
+ 313 0018 4361     		str	r3, [r0, #20]
+ 314 001a 8361     		str	r3, [r0, #24]
+ 315 001c C361     		str	r3, [r0, #28]
+ 316 001e 0362     		str	r3, [r0, #32]
+ 317 0020 FFF7FEFF 		bl	HAL_I2C_Init
+ 318 0024 00B9     		cbnz	r0, .L32
+ 319 0026 08BD     		pop	{r3, pc}
+ 320              	.L32:
+ 321 0028 FFF7FEFF 		bl	Error_Handler
+ 322              	.L34:
+ 323              		.align	2
+ 324              	.L33:
+ 325 002c 00000000 		.word	hi2c1
+ 326 0030 00540040 		.word	1073763328
+ 327 0034 A0860100 		.word	100000
+ 329              		.section	.text.SystemClock_Config,"ax",%progbits
+ 330              		.align	1
+ 331              		.global	SystemClock_Config
+ 332              		.syntax unified
+ 333              		.thumb
+ 334              		.thumb_func
+ 336              	SystemClock_Config:
+ 337              		@ args = 0, pretend = 0, frame = 80
+ 338              		@ frame_needed = 0, uses_anonymous_args = 0
+ 339 0000 00B5     		push	{lr}
+ 340 0002 95B0     		sub	sp, sp, #84
+ 341 0004 3022     		movs	r2, #48
+ 342 0006 0021     		movs	r1, #0
+ 343 0008 08A8     		add	r0, sp, #32
+ 344 000a FFF7FEFF 		bl	memset
+ 345 000e 0023     		movs	r3, #0
+ 346 0010 0393     		str	r3, [sp, #12]
+ 347 0012 0493     		str	r3, [sp, #16]
+ 348 0014 0593     		str	r3, [sp, #20]
+ 349 0016 0693     		str	r3, [sp, #24]
+ 350 0018 0793     		str	r3, [sp, #28]
+ 351 001a 0193     		str	r3, [sp, #4]
+ 352 001c 184A     		ldr	r2, .L41
+ 353 001e 116C     		ldr	r1, [r2, #64]
+ 354 0020 41F08051 		orr	r1, r1, #268435456
+ 355 0024 1164     		str	r1, [r2, #64]
+ 356 0026 126C     		ldr	r2, [r2, #64]
+ 357 0028 02F08052 		and	r2, r2, #268435456
+ 358 002c 0192     		str	r2, [sp, #4]
+ 359 002e 019A     		ldr	r2, [sp, #4]
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s 			page 7
+
+
+ 360 0030 0293     		str	r3, [sp, #8]
+ 361 0032 144A     		ldr	r2, .L41+4
+ 362 0034 1168     		ldr	r1, [r2]
+ 363 0036 41F48041 		orr	r1, r1, #16384
+ 364 003a 1160     		str	r1, [r2]
+ 365 003c 1268     		ldr	r2, [r2]
+ 366 003e 02F48042 		and	r2, r2, #16384
+ 367 0042 0292     		str	r2, [sp, #8]
+ 368 0044 029A     		ldr	r2, [sp, #8]
+ 369 0046 0222     		movs	r2, #2
+ 370 0048 0892     		str	r2, [sp, #32]
+ 371 004a 0122     		movs	r2, #1
+ 372 004c 0B92     		str	r2, [sp, #44]
+ 373 004e 1022     		movs	r2, #16
+ 374 0050 0C92     		str	r2, [sp, #48]
+ 375 0052 0E93     		str	r3, [sp, #56]
+ 376 0054 08A8     		add	r0, sp, #32
+ 377 0056 FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 378 005a 68B9     		cbnz	r0, .L39
+ 379 005c 0F23     		movs	r3, #15
+ 380 005e 0393     		str	r3, [sp, #12]
+ 381 0060 0021     		movs	r1, #0
+ 382 0062 0491     		str	r1, [sp, #16]
+ 383 0064 0591     		str	r1, [sp, #20]
+ 384 0066 0691     		str	r1, [sp, #24]
+ 385 0068 0791     		str	r1, [sp, #28]
+ 386 006a 03A8     		add	r0, sp, #12
+ 387 006c FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 388 0070 20B9     		cbnz	r0, .L40
+ 389 0072 15B0     		add	sp, sp, #84
+ 390              		@ sp needed
+ 391 0074 5DF804FB 		ldr	pc, [sp], #4
+ 392              	.L39:
+ 393 0078 FFF7FEFF 		bl	Error_Handler
+ 394              	.L40:
+ 395 007c FFF7FEFF 		bl	Error_Handler
+ 396              	.L42:
+ 397              		.align	2
+ 398              	.L41:
+ 399 0080 00380240 		.word	1073887232
+ 400 0084 00700040 		.word	1073770496
+ 402              		.section	.text.main,"ax",%progbits
+ 403              		.align	1
+ 404              		.global	main
+ 405              		.syntax unified
+ 406              		.thumb
+ 407              		.thumb_func
+ 409              	main:
+ 410              		@ Volatile: function does not return.
+ 411              		@ args = 0, pretend = 0, frame = 0
+ 412              		@ frame_needed = 0, uses_anonymous_args = 0
+ 413 0000 08B5     		push	{r3, lr}
+ 414 0002 FFF7FEFF 		bl	HAL_Init
+ 415 0006 FFF7FEFF 		bl	SystemClock_Config
+ 416 000a FFF7FEFF 		bl	MX_GPIO_Init
+ 417 000e FFF7FEFF 		bl	MX_I2C1_Init
+ 418 0012 FFF7FEFF 		bl	MPU6050_Init
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s 			page 8
+
+
+ 419              	.L44:
+ 420 0016 FFF7FEFF 		bl	MPU6050_Read_Gyro
+ 421 001a 6420     		movs	r0, #100
+ 422 001c FFF7FEFF 		bl	HAL_Delay
+ 423 0020 F9E7     		b	.L44
+ 425              		.global	Rec_Data
+ 426              		.section	.bss.Rec_Data,"aw",%nobits
+ 427              		.align	2
+ 430              	Rec_Data:
+ 431 0000 00000000 		.space	12
+ 431      00000000 
+ 431      00000000 
+ 432              		.global	Gz
+ 433              		.section	.bss.Gz,"aw",%nobits
+ 434              		.align	2
+ 437              	Gz:
+ 438 0000 00000000 		.space	4
+ 439              		.global	Gy
+ 440              		.section	.bss.Gy,"aw",%nobits
+ 441              		.align	2
+ 444              	Gy:
+ 445 0000 00000000 		.space	4
+ 446              		.global	Gx
+ 447              		.section	.bss.Gx,"aw",%nobits
+ 448              		.align	2
+ 451              	Gx:
+ 452 0000 00000000 		.space	4
+ 453              		.global	Gyro_Z_RAW
+ 454              		.section	.bss.Gyro_Z_RAW,"aw",%nobits
+ 455              		.align	1
+ 458              	Gyro_Z_RAW:
+ 459 0000 0000     		.space	2
+ 460              		.global	Gyro_Y_RAW
+ 461              		.section	.bss.Gyro_Y_RAW,"aw",%nobits
+ 462              		.align	1
+ 465              	Gyro_Y_RAW:
+ 466 0000 0000     		.space	2
+ 467              		.global	Gyro_X_RAW
+ 468              		.section	.bss.Gyro_X_RAW,"aw",%nobits
+ 469              		.align	1
+ 472              	Gyro_X_RAW:
+ 473 0000 0000     		.space	2
+ 474              		.global	hi2c1
+ 475              		.section	.bss.hi2c1,"aw",%nobits
+ 476              		.align	2
+ 479              	hi2c1:
+ 480 0000 00000000 		.space	84
+ 480      00000000 
+ 480      00000000 
+ 480      00000000 
+ 480      00000000 
+ 481              		.ident	"GCC: (GNU Tools for STM32 13.3.rel1.20240926-1715) 13.3.1 20240614"
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:18     .text.MX_GPIO_Init:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:23     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:52     .text.MX_GPIO_Init:00000034 $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:55     .text.Power_Management_1:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:61     .text.Power_Management_1:00000000 Power_Management_1
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:84     .text.Power_Management_1:0000002c $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:479    .bss.hi2c1:00000000 hi2c1
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:87     .text.Sample_rate_cfg:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:93     .text.Sample_rate_cfg:00000000 Sample_rate_cfg
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:116    .text.Sample_rate_cfg:0000002c $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:119    .text.GYRO_ACCEL_cfg:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:125    .text.GYRO_ACCEL_cfg:00000000 GYRO_ACCEL_cfg
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:158    .text.GYRO_ACCEL_cfg:00000040 $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:161    .text.MPU6050_Init:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:167    .text.MPU6050_Init:00000000 MPU6050_Init
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:197    .text.MPU6050_Init:0000003c $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:200    .text.MPU6050_Read_Gyro:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:206    .text.MPU6050_Read_Gyro:00000000 MPU6050_Read_Gyro
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:262    .text.MPU6050_Read_Gyro:00000088 $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:430    .bss.Rec_Data:00000000 Rec_Data
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:472    .bss.Gyro_X_RAW:00000000 Gyro_X_RAW
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:465    .bss.Gyro_Y_RAW:00000000 Gyro_Y_RAW
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:458    .bss.Gyro_Z_RAW:00000000 Gyro_Z_RAW
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:451    .bss.Gx:00000000 Gx
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:444    .bss.Gy:00000000 Gy
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:437    .bss.Gz:00000000 Gz
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:273    .text.Error_Handler:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:279    .text.Error_Handler:00000000 Error_Handler
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:294    .text.MX_I2C1_Init:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:299    .text.MX_I2C1_Init:00000000 MX_I2C1_Init
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:325    .text.MX_I2C1_Init:0000002c $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:330    .text.SystemClock_Config:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:336    .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:399    .text.SystemClock_Config:00000080 $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:403    .text.main:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:409    .text.main:00000000 main
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:427    .bss.Rec_Data:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:434    .bss.Gz:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:441    .bss.Gy:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:448    .bss.Gx:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:455    .bss.Gyro_Z_RAW:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:462    .bss.Gyro_Y_RAW:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:469    .bss.Gyro_X_RAW:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\ccpT46Iz.s:476    .bss.hi2c1:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_I2C_Mem_Write
+HAL_I2C_Mem_Read
+HAL_I2C_Init
+memset
+HAL_RCC_OscConfig
+HAL_RCC_ClockConfig
+HAL_Init
+HAL_Delay

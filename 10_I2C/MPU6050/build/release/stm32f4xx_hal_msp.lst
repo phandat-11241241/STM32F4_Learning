@@ -1,0 +1,176 @@
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccxSteYd.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"stm32f4xx_hal_msp.c"
+  16              		.text
+  17              		.section	.text.HAL_MspInit,"ax",%progbits
+  18              		.align	1
+  19              		.global	HAL_MspInit
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	HAL_MspInit:
+  25              		@ args = 0, pretend = 0, frame = 8
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 82B0     		sub	sp, sp, #8
+  29 0002 0021     		movs	r1, #0
+  30 0004 0091     		str	r1, [sp]
+  31 0006 0B4B     		ldr	r3, .L3
+  32 0008 5A6C     		ldr	r2, [r3, #68]
+  33 000a 42F48042 		orr	r2, r2, #16384
+  34 000e 5A64     		str	r2, [r3, #68]
+  35 0010 5A6C     		ldr	r2, [r3, #68]
+  36 0012 02F48042 		and	r2, r2, #16384
+  37 0016 0092     		str	r2, [sp]
+  38 0018 009A     		ldr	r2, [sp]
+  39 001a 0191     		str	r1, [sp, #4]
+  40 001c 1A6C     		ldr	r2, [r3, #64]
+  41 001e 42F08052 		orr	r2, r2, #268435456
+  42 0022 1A64     		str	r2, [r3, #64]
+  43 0024 1B6C     		ldr	r3, [r3, #64]
+  44 0026 03F08053 		and	r3, r3, #268435456
+  45 002a 0193     		str	r3, [sp, #4]
+  46 002c 019B     		ldr	r3, [sp, #4]
+  47 002e 02B0     		add	sp, sp, #8
+  48              		@ sp needed
+  49 0030 7047     		bx	lr
+  50              	.L4:
+  51 0032 00BF     		.align	2
+  52              	.L3:
+  53 0034 00380240 		.word	1073887232
+  55              		.section	.text.HAL_I2C_MspInit,"ax",%progbits
+  56              		.align	1
+  57              		.global	HAL_I2C_MspInit
+  58              		.syntax unified
+  59              		.thumb
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccxSteYd.s 			page 2
+
+
+  60              		.thumb_func
+  62              	HAL_I2C_MspInit:
+  63              		@ args = 0, pretend = 0, frame = 32
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65 0000 30B5     		push	{r4, r5, lr}
+  66 0002 89B0     		sub	sp, sp, #36
+  67 0004 0023     		movs	r3, #0
+  68 0006 0393     		str	r3, [sp, #12]
+  69 0008 0493     		str	r3, [sp, #16]
+  70 000a 0593     		str	r3, [sp, #20]
+  71 000c 0693     		str	r3, [sp, #24]
+  72 000e 0793     		str	r3, [sp, #28]
+  73 0010 0268     		ldr	r2, [r0]
+  74 0012 144B     		ldr	r3, .L9
+  75 0014 9A42     		cmp	r2, r3
+  76 0016 01D0     		beq	.L8
+  77              	.L5:
+  78 0018 09B0     		add	sp, sp, #36
+  79              		@ sp needed
+  80 001a 30BD     		pop	{r4, r5, pc}
+  81              	.L8:
+  82 001c 0025     		movs	r5, #0
+  83 001e 0195     		str	r5, [sp, #4]
+  84 0020 114C     		ldr	r4, .L9+4
+  85 0022 236B     		ldr	r3, [r4, #48]
+  86 0024 43F00203 		orr	r3, r3, #2
+  87 0028 2363     		str	r3, [r4, #48]
+  88 002a 236B     		ldr	r3, [r4, #48]
+  89 002c 03F00203 		and	r3, r3, #2
+  90 0030 0193     		str	r3, [sp, #4]
+  91 0032 019B     		ldr	r3, [sp, #4]
+  92 0034 C023     		movs	r3, #192
+  93 0036 0393     		str	r3, [sp, #12]
+  94 0038 1223     		movs	r3, #18
+  95 003a 0493     		str	r3, [sp, #16]
+  96 003c 0323     		movs	r3, #3
+  97 003e 0693     		str	r3, [sp, #24]
+  98 0040 0423     		movs	r3, #4
+  99 0042 0793     		str	r3, [sp, #28]
+ 100 0044 03A9     		add	r1, sp, #12
+ 101 0046 0948     		ldr	r0, .L9+8
+ 102 0048 FFF7FEFF 		bl	HAL_GPIO_Init
+ 103 004c 0295     		str	r5, [sp, #8]
+ 104 004e 236C     		ldr	r3, [r4, #64]
+ 105 0050 43F40013 		orr	r3, r3, #2097152
+ 106 0054 2364     		str	r3, [r4, #64]
+ 107 0056 236C     		ldr	r3, [r4, #64]
+ 108 0058 03F40013 		and	r3, r3, #2097152
+ 109 005c 0293     		str	r3, [sp, #8]
+ 110 005e 029B     		ldr	r3, [sp, #8]
+ 111 0060 DAE7     		b	.L5
+ 112              	.L10:
+ 113 0062 00BF     		.align	2
+ 114              	.L9:
+ 115 0064 00540040 		.word	1073763328
+ 116 0068 00380240 		.word	1073887232
+ 117 006c 00040240 		.word	1073873920
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccxSteYd.s 			page 3
+
+
+ 119              		.section	.text.HAL_I2C_MspDeInit,"ax",%progbits
+ 120              		.align	1
+ 121              		.global	HAL_I2C_MspDeInit
+ 122              		.syntax unified
+ 123              		.thumb
+ 124              		.thumb_func
+ 126              	HAL_I2C_MspDeInit:
+ 127              		@ args = 0, pretend = 0, frame = 0
+ 128              		@ frame_needed = 0, uses_anonymous_args = 0
+ 129 0000 0268     		ldr	r2, [r0]
+ 130 0002 0A4B     		ldr	r3, .L18
+ 131 0004 9A42     		cmp	r2, r3
+ 132 0006 00D0     		beq	.L17
+ 133 0008 7047     		bx	lr
+ 134              	.L17:
+ 135 000a 10B5     		push	{r4, lr}
+ 136 000c 084A     		ldr	r2, .L18+4
+ 137 000e 136C     		ldr	r3, [r2, #64]
+ 138 0010 23F40013 		bic	r3, r3, #2097152
+ 139 0014 1364     		str	r3, [r2, #64]
+ 140 0016 074C     		ldr	r4, .L18+8
+ 141 0018 4021     		movs	r1, #64
+ 142 001a 2046     		mov	r0, r4
+ 143 001c FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 144 0020 8021     		movs	r1, #128
+ 145 0022 2046     		mov	r0, r4
+ 146 0024 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 147 0028 10BD     		pop	{r4, pc}
+ 148              	.L19:
+ 149 002a 00BF     		.align	2
+ 150              	.L18:
+ 151 002c 00540040 		.word	1073763328
+ 152 0030 00380240 		.word	1073887232
+ 153 0034 00040240 		.word	1073873920
+ 155              		.ident	"GCC: (GNU Tools for STM32 13.3.rel1.20240926-1715) 13.3.1 20240614"
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccxSteYd.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f4xx_hal_msp.c
+C:\Users\datpt\AppData\Local\Temp\ccxSteYd.s:18     .text.HAL_MspInit:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccxSteYd.s:24     .text.HAL_MspInit:00000000 HAL_MspInit
+C:\Users\datpt\AppData\Local\Temp\ccxSteYd.s:53     .text.HAL_MspInit:00000034 $d
+C:\Users\datpt\AppData\Local\Temp\ccxSteYd.s:56     .text.HAL_I2C_MspInit:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccxSteYd.s:62     .text.HAL_I2C_MspInit:00000000 HAL_I2C_MspInit
+C:\Users\datpt\AppData\Local\Temp\ccxSteYd.s:115    .text.HAL_I2C_MspInit:00000064 $d
+C:\Users\datpt\AppData\Local\Temp\ccxSteYd.s:120    .text.HAL_I2C_MspDeInit:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccxSteYd.s:126    .text.HAL_I2C_MspDeInit:00000000 HAL_I2C_MspDeInit
+C:\Users\datpt\AppData\Local\Temp\ccxSteYd.s:151    .text.HAL_I2C_MspDeInit:0000002c $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_Init
+HAL_GPIO_DeInit
