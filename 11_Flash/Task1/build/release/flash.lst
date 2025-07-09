@@ -1,0 +1,137 @@
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\cczr2cST.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"flash.c"
+  16              		.text
+  17              		.section	.text.Flash_Erase,"ax",%progbits
+  18              		.align	1
+  19              		.global	Flash_Erase
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	Flash_Erase:
+  25              		@ args = 0, pretend = 0, frame = 24
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27 0000 00B5     		push	{lr}
+  28 0002 87B0     		sub	sp, sp, #28
+  29 0004 FFF7FEFF 		bl	HAL_FLASH_Unlock
+  30 0008 0123     		movs	r3, #1
+  31 000a 0293     		str	r3, [sp, #8]
+  32 000c 0493     		str	r3, [sp, #16]
+  33 000e 0023     		movs	r3, #0
+  34 0010 0193     		str	r3, [sp, #4]
+  35 0012 6946     		mov	r1, sp
+  36 0014 01A8     		add	r0, sp, #4
+  37 0016 FFF7FEFF 		bl	HAL_FLASHEx_Erase
+  38 001a FFF7FEFF 		bl	HAL_FLASH_Lock
+  39 001e 07B0     		add	sp, sp, #28
+  40              		@ sp needed
+  41 0020 5DF804FB 		ldr	pc, [sp], #4
+  43              		.section	.text.Flash_Write_Int,"ax",%progbits
+  44              		.align	1
+  45              		.global	Flash_Write_Int
+  46              		.syntax unified
+  47              		.thumb
+  48              		.thumb_func
+  50              	Flash_Write_Int:
+  51              		@ args = 0, pretend = 0, frame = 0
+  52              		@ frame_needed = 0, uses_anonymous_args = 0
+  53              		@ link register save eliminated.
+  54 0000 7047     		bx	lr
+  56              		.section	.text.Flash_Write_Float,"ax",%progbits
+  57              		.align	1
+  58              		.global	Flash_Write_Float
+  59              		.syntax unified
+  60              		.thumb
+  61              		.thumb_func
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\cczr2cST.s 			page 2
+
+
+  63              	Flash_Write_Float:
+  64              		@ args = 0, pretend = 0, frame = 0
+  65              		@ frame_needed = 0, uses_anonymous_args = 0
+  66              		@ link register save eliminated.
+  67 0000 7047     		bx	lr
+  69              		.section	.text.Flash_Write_Array,"ax",%progbits
+  70              		.align	1
+  71              		.global	Flash_Write_Array
+  72              		.syntax unified
+  73              		.thumb
+  74              		.thumb_func
+  76              	Flash_Write_Array:
+  77              		@ args = 0, pretend = 0, frame = 0
+  78              		@ frame_needed = 0, uses_anonymous_args = 0
+  79              		@ link register save eliminated.
+  80 0000 7047     		bx	lr
+  82              		.section	.text.Flash_Read_Int,"ax",%progbits
+  83              		.align	1
+  84              		.global	Flash_Read_Int
+  85              		.syntax unified
+  86              		.thumb
+  87              		.thumb_func
+  89              	Flash_Read_Int:
+  90              		@ args = 0, pretend = 0, frame = 0
+  91              		@ frame_needed = 0, uses_anonymous_args = 0
+  92              		@ link register save eliminated.
+  93 0000 7047     		bx	lr
+  95              		.section	.text.Flash_Read_Flash,"ax",%progbits
+  96              		.align	1
+  97              		.global	Flash_Read_Flash
+  98              		.syntax unified
+  99              		.thumb
+ 100              		.thumb_func
+ 102              	Flash_Read_Flash:
+ 103              		@ args = 0, pretend = 0, frame = 0
+ 104              		@ frame_needed = 0, uses_anonymous_args = 0
+ 105              		@ link register save eliminated.
+ 106 0000 7047     		bx	lr
+ 108              		.section	.text.Flash_Read_Array,"ax",%progbits
+ 109              		.align	1
+ 110              		.global	Flash_Read_Array
+ 111              		.syntax unified
+ 112              		.thumb
+ 113              		.thumb_func
+ 115              	Flash_Read_Array:
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118              		@ link register save eliminated.
+ 119 0000 7047     		bx	lr
+ 121              		.ident	"GCC: (GNU Tools for STM32 13.3.rel1.20240926-1715) 13.3.1 20240614"
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\cczr2cST.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 flash.c
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:18     .text.Flash_Erase:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:24     .text.Flash_Erase:00000000 Flash_Erase
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:44     .text.Flash_Write_Int:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:50     .text.Flash_Write_Int:00000000 Flash_Write_Int
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:57     .text.Flash_Write_Float:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:63     .text.Flash_Write_Float:00000000 Flash_Write_Float
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:70     .text.Flash_Write_Array:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:76     .text.Flash_Write_Array:00000000 Flash_Write_Array
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:83     .text.Flash_Read_Int:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:89     .text.Flash_Read_Int:00000000 Flash_Read_Int
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:96     .text.Flash_Read_Flash:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:102    .text.Flash_Read_Flash:00000000 Flash_Read_Flash
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:109    .text.Flash_Read_Array:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\cczr2cST.s:115    .text.Flash_Read_Array:00000000 Flash_Read_Array
+
+UNDEFINED SYMBOLS
+HAL_FLASH_Unlock
+HAL_FLASHEx_Erase
+HAL_FLASH_Lock

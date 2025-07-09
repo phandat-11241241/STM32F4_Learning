@@ -1,0 +1,198 @@
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"main.c"
+  16              		.text
+  17              		.section	.text.MX_GPIO_Init,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	MX_GPIO_Init:
+  24              		@ args = 0, pretend = 0, frame = 8
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 82B0     		sub	sp, sp, #8
+  28 0002 0021     		movs	r1, #0
+  29 0004 0091     		str	r1, [sp]
+  30 0006 0B4B     		ldr	r3, .L3
+  31 0008 1A6B     		ldr	r2, [r3, #48]
+  32 000a 42F08002 		orr	r2, r2, #128
+  33 000e 1A63     		str	r2, [r3, #48]
+  34 0010 1A6B     		ldr	r2, [r3, #48]
+  35 0012 02F08002 		and	r2, r2, #128
+  36 0016 0092     		str	r2, [sp]
+  37 0018 009A     		ldr	r2, [sp]
+  38 001a 0191     		str	r1, [sp, #4]
+  39 001c 1A6B     		ldr	r2, [r3, #48]
+  40 001e 42F00102 		orr	r2, r2, #1
+  41 0022 1A63     		str	r2, [r3, #48]
+  42 0024 1B6B     		ldr	r3, [r3, #48]
+  43 0026 03F00103 		and	r3, r3, #1
+  44 002a 0193     		str	r3, [sp, #4]
+  45 002c 019B     		ldr	r3, [sp, #4]
+  46 002e 02B0     		add	sp, sp, #8
+  47              		@ sp needed
+  48 0030 7047     		bx	lr
+  49              	.L4:
+  50 0032 00BF     		.align	2
+  51              	.L3:
+  52 0034 00380240 		.word	1073887232
+  54              		.section	.text.Error_Handler,"ax",%progbits
+  55              		.align	1
+  56              		.global	Error_Handler
+  57              		.syntax unified
+  58              		.thumb
+  59              		.thumb_func
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s 			page 2
+
+
+  61              	Error_Handler:
+  62              		@ Volatile: function does not return.
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65              		@ link register save eliminated.
+  66              		.syntax unified
+  67              	@ 962 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+  68 0000 72B6     		cpsid i
+  69              	@ 0 "" 2
+  70              		.thumb
+  71              		.syntax unified
+  72              	.L6:
+  73 0002 FEE7     		b	.L6
+  75              		.section	.text.SystemClock_Config,"ax",%progbits
+  76              		.align	1
+  77              		.global	SystemClock_Config
+  78              		.syntax unified
+  79              		.thumb
+  80              		.thumb_func
+  82              	SystemClock_Config:
+  83              		@ args = 0, pretend = 0, frame = 80
+  84              		@ frame_needed = 0, uses_anonymous_args = 0
+  85 0000 00B5     		push	{lr}
+  86 0002 95B0     		sub	sp, sp, #84
+  87 0004 3022     		movs	r2, #48
+  88 0006 0021     		movs	r1, #0
+  89 0008 08A8     		add	r0, sp, #32
+  90 000a FFF7FEFF 		bl	memset
+  91 000e 0023     		movs	r3, #0
+  92 0010 0393     		str	r3, [sp, #12]
+  93 0012 0493     		str	r3, [sp, #16]
+  94 0014 0593     		str	r3, [sp, #20]
+  95 0016 0693     		str	r3, [sp, #24]
+  96 0018 0793     		str	r3, [sp, #28]
+  97 001a 0193     		str	r3, [sp, #4]
+  98 001c 1F4A     		ldr	r2, .L13
+  99 001e 116C     		ldr	r1, [r2, #64]
+ 100 0020 41F08051 		orr	r1, r1, #268435456
+ 101 0024 1164     		str	r1, [r2, #64]
+ 102 0026 126C     		ldr	r2, [r2, #64]
+ 103 0028 02F08052 		and	r2, r2, #268435456
+ 104 002c 0192     		str	r2, [sp, #4]
+ 105 002e 019A     		ldr	r2, [sp, #4]
+ 106 0030 0293     		str	r3, [sp, #8]
+ 107 0032 1B4B     		ldr	r3, .L13+4
+ 108 0034 1A68     		ldr	r2, [r3]
+ 109 0036 42F48042 		orr	r2, r2, #16384
+ 110 003a 1A60     		str	r2, [r3]
+ 111 003c 1B68     		ldr	r3, [r3]
+ 112 003e 03F48043 		and	r3, r3, #16384
+ 113 0042 0293     		str	r3, [sp, #8]
+ 114 0044 029B     		ldr	r3, [sp, #8]
+ 115 0046 0123     		movs	r3, #1
+ 116 0048 0893     		str	r3, [sp, #32]
+ 117 004a 4FF48033 		mov	r3, #65536
+ 118 004e 0993     		str	r3, [sp, #36]
+ 119 0050 0223     		movs	r3, #2
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s 			page 3
+
+
+ 120 0052 0E93     		str	r3, [sp, #56]
+ 121 0054 4FF48002 		mov	r2, #4194304
+ 122 0058 0F92     		str	r2, [sp, #60]
+ 123 005a 1922     		movs	r2, #25
+ 124 005c 1092     		str	r2, [sp, #64]
+ 125 005e 9022     		movs	r2, #144
+ 126 0060 1192     		str	r2, [sp, #68]
+ 127 0062 1293     		str	r3, [sp, #72]
+ 128 0064 0423     		movs	r3, #4
+ 129 0066 1393     		str	r3, [sp, #76]
+ 130 0068 08A8     		add	r0, sp, #32
+ 131 006a FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 132 006e 80B9     		cbnz	r0, .L11
+ 133 0070 0F23     		movs	r3, #15
+ 134 0072 0393     		str	r3, [sp, #12]
+ 135 0074 0221     		movs	r1, #2
+ 136 0076 0491     		str	r1, [sp, #16]
+ 137 0078 0023     		movs	r3, #0
+ 138 007a 0593     		str	r3, [sp, #20]
+ 139 007c 4FF48052 		mov	r2, #4096
+ 140 0080 0692     		str	r2, [sp, #24]
+ 141 0082 0793     		str	r3, [sp, #28]
+ 142 0084 03A8     		add	r0, sp, #12
+ 143 0086 FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 144 008a 20B9     		cbnz	r0, .L12
+ 145 008c 15B0     		add	sp, sp, #84
+ 146              		@ sp needed
+ 147 008e 5DF804FB 		ldr	pc, [sp], #4
+ 148              	.L11:
+ 149 0092 FFF7FEFF 		bl	Error_Handler
+ 150              	.L12:
+ 151 0096 FFF7FEFF 		bl	Error_Handler
+ 152              	.L14:
+ 153 009a 00BF     		.align	2
+ 154              	.L13:
+ 155 009c 00380240 		.word	1073887232
+ 156 00a0 00700040 		.word	1073770496
+ 158              		.section	.text.main,"ax",%progbits
+ 159              		.align	1
+ 160              		.global	main
+ 161              		.syntax unified
+ 162              		.thumb
+ 163              		.thumb_func
+ 165              	main:
+ 166              		@ Volatile: function does not return.
+ 167              		@ args = 0, pretend = 0, frame = 0
+ 168              		@ frame_needed = 0, uses_anonymous_args = 0
+ 169 0000 08B5     		push	{r3, lr}
+ 170 0002 FFF7FEFF 		bl	HAL_Init
+ 171 0006 FFF7FEFF 		bl	SystemClock_Config
+ 172 000a FFF7FEFF 		bl	MX_GPIO_Init
+ 173              	.L16:
+ 174 000e FEE7     		b	.L16
+ 176              		.ident	"GCC: (GNU Tools for STM32 13.3.rel1.20240926-1715) 13.3.1 20240614"
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s:18     .text.MX_GPIO_Init:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s:23     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s:52     .text.MX_GPIO_Init:00000034 $d
+C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s:55     .text.Error_Handler:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s:61     .text.Error_Handler:00000000 Error_Handler
+C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s:76     .text.SystemClock_Config:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s:82     .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s:155    .text.SystemClock_Config:0000009c $d
+C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s:159    .text.main:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccP5vaIg.s:165    .text.main:00000000 main
+
+UNDEFINED SYMBOLS
+memset
+HAL_RCC_OscConfig
+HAL_RCC_ClockConfig
+HAL_Init
