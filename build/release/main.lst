@@ -1,0 +1,167 @@
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\cc696v5m.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"main.c"
+  14              		.text
+  15              		.section	.text.Error_Handler,"ax",%progbits
+  16              		.align	1
+  17              		.global	Error_Handler
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  22              	Error_Handler:
+  23              		@ Volatile: function does not return.
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27              		.syntax unified
+  28              	@ 142 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+  29 0000 72B6     		cpsid i
+  30              	@ 0 "" 2
+  31              		.thumb
+  32              		.syntax unified
+  33              	.L2:
+  34 0002 FEE7     		b	.L2
+  36              		.section	.text.SystemClock_Config,"ax",%progbits
+  37              		.align	1
+  38              		.global	SystemClock_Config
+  39              		.syntax unified
+  40              		.thumb
+  41              		.thumb_func
+  43              	SystemClock_Config:
+  44              		@ args = 0, pretend = 0, frame = 80
+  45              		@ frame_needed = 0, uses_anonymous_args = 0
+  46 0000 00B5     		push	{lr}
+  47 0002 95B0     		sub	sp, sp, #84
+  48 0004 2822     		movs	r2, #40
+  49 0006 0021     		movs	r1, #0
+  50 0008 0DEB0200 		add	r0, sp, r2
+  51 000c FFF7FEFF 		bl	memset
+  52 0010 0023     		movs	r3, #0
+  53 0012 0593     		str	r3, [sp, #20]
+  54 0014 0693     		str	r3, [sp, #24]
+  55 0016 0793     		str	r3, [sp, #28]
+  56 0018 0893     		str	r3, [sp, #32]
+  57 001a 0993     		str	r3, [sp, #36]
+  58 001c 0193     		str	r3, [sp, #4]
+  59 001e 0293     		str	r3, [sp, #8]
+  60 0020 0393     		str	r3, [sp, #12]
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\cc696v5m.s 			page 2
+
+
+  61 0022 0493     		str	r3, [sp, #16]
+  62 0024 0122     		movs	r2, #1
+  63 0026 0A92     		str	r2, [sp, #40]
+  64 0028 4FF48033 		mov	r3, #65536
+  65 002c 0B93     		str	r3, [sp, #44]
+  66 002e 0E92     		str	r2, [sp, #56]
+  67 0030 0222     		movs	r2, #2
+  68 0032 1192     		str	r2, [sp, #68]
+  69 0034 1293     		str	r3, [sp, #72]
+  70 0036 4FF4E013 		mov	r3, #1835008
+  71 003a 1393     		str	r3, [sp, #76]
+  72 003c 0AA8     		add	r0, sp, #40
+  73 003e FFF7FEFF 		bl	HAL_RCC_OscConfig
+  74 0042 C8B9     		cbnz	r0, .L8
+  75 0044 0F23     		movs	r3, #15
+  76 0046 0593     		str	r3, [sp, #20]
+  77 0048 0221     		movs	r1, #2
+  78 004a 0691     		str	r1, [sp, #24]
+  79 004c 0023     		movs	r3, #0
+  80 004e 0793     		str	r3, [sp, #28]
+  81 0050 4FF48062 		mov	r2, #1024
+  82 0054 0892     		str	r2, [sp, #32]
+  83 0056 0993     		str	r3, [sp, #36]
+  84 0058 05A8     		add	r0, sp, #20
+  85 005a FFF7FEFF 		bl	HAL_RCC_ClockConfig
+  86 005e 68B9     		cbnz	r0, .L9
+  87 0060 0223     		movs	r3, #2
+  88 0062 0193     		str	r3, [sp, #4]
+  89 0064 4FF40043 		mov	r3, #32768
+  90 0068 0393     		str	r3, [sp, #12]
+  91 006a 01A8     		add	r0, sp, #4
+  92 006c FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+  93 0070 30B9     		cbnz	r0, .L10
+  94 0072 15B0     		add	sp, sp, #84
+  95              		@ sp needed
+  96 0074 5DF804FB 		ldr	pc, [sp], #4
+  97              	.L8:
+  98 0078 FFF7FEFF 		bl	Error_Handler
+  99              	.L9:
+ 100 007c FFF7FEFF 		bl	Error_Handler
+ 101              	.L10:
+ 102 0080 FFF7FEFF 		bl	Error_Handler
+ 104              		.section	.text.main,"ax",%progbits
+ 105              		.align	1
+ 106              		.global	main
+ 107              		.syntax unified
+ 108              		.thumb
+ 109              		.thumb_func
+ 111              	main:
+ 112              		@ Volatile: function does not return.
+ 113              		@ args = 0, pretend = 0, frame = 0
+ 114              		@ frame_needed = 0, uses_anonymous_args = 0
+ 115 0000 08B5     		push	{r3, lr}
+ 116 0002 FFF7FEFF 		bl	HAL_Init
+ 117 0006 FFF7FEFF 		bl	SystemClock_Config
+ 118 000a FFF7FEFF 		bl	MX_GPIO_Init
+ 119 000e FFF7FEFF 		bl	MX_DMA_Init
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\cc696v5m.s 			page 3
+
+
+ 120 0012 FFF7FEFF 		bl	MX_ADC1_Init
+ 121 0016 0222     		movs	r2, #2
+ 122 0018 0249     		ldr	r1, .L14
+ 123 001a 0348     		ldr	r0, .L14+4
+ 124 001c FFF7FEFF 		bl	HAL_ADC_Start_DMA
+ 125              	.L12:
+ 126 0020 FEE7     		b	.L12
+ 127              	.L15:
+ 128 0022 00BF     		.align	2
+ 129              	.L14:
+ 130 0024 00000000 		.word	data
+ 131 0028 00000000 		.word	hadc1
+ 133              		.global	data
+ 134              		.section	.bss.data,"aw",%nobits
+ 135              		.align	2
+ 138              	data:
+ 139 0000 00000000 		.space	4
+ 140              		.ident	"GCC: (GNU Tools for STM32 13.3.rel1.20240926-1715) 13.3.1 20240614"
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\cc696v5m.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\datpt\AppData\Local\Temp\cc696v5m.s:16     .text.Error_Handler:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\cc696v5m.s:22     .text.Error_Handler:00000000 Error_Handler
+C:\Users\datpt\AppData\Local\Temp\cc696v5m.s:37     .text.SystemClock_Config:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\cc696v5m.s:43     .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\datpt\AppData\Local\Temp\cc696v5m.s:105    .text.main:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\cc696v5m.s:111    .text.main:00000000 main
+C:\Users\datpt\AppData\Local\Temp\cc696v5m.s:130    .text.main:00000024 $d
+C:\Users\datpt\AppData\Local\Temp\cc696v5m.s:138    .bss.data:00000000 data
+C:\Users\datpt\AppData\Local\Temp\cc696v5m.s:135    .bss.data:00000000 $d
+
+UNDEFINED SYMBOLS
+memset
+HAL_RCC_OscConfig
+HAL_RCC_ClockConfig
+HAL_RCCEx_PeriphCLKConfig
+HAL_Init
+MX_GPIO_Init
+MX_DMA_Init
+MX_ADC1_Init
+HAL_ADC_Start_DMA
+hadc1
