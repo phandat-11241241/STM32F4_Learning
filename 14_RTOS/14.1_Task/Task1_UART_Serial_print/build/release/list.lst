@@ -1,0 +1,161 @@
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"list.c"
+  14              		.text
+  15              		.section	.text.vListInitialise,"ax",%progbits
+  16              		.align	1
+  17              		.global	vListInitialise
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  22              	vListInitialise:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 00F10803 		add	r3, r0, #8
+  27 0004 4360     		str	r3, [r0, #4]
+  28 0006 4FF0FF32 		mov	r2, #-1
+  29 000a 8260     		str	r2, [r0, #8]
+  30 000c C360     		str	r3, [r0, #12]
+  31 000e 0361     		str	r3, [r0, #16]
+  32 0010 0023     		movs	r3, #0
+  33 0012 0360     		str	r3, [r0]
+  34 0014 7047     		bx	lr
+  36              		.section	.text.vListInitialiseItem,"ax",%progbits
+  37              		.align	1
+  38              		.global	vListInitialiseItem
+  39              		.syntax unified
+  40              		.thumb
+  41              		.thumb_func
+  43              	vListInitialiseItem:
+  44              		@ args = 0, pretend = 0, frame = 0
+  45              		@ frame_needed = 0, uses_anonymous_args = 0
+  46              		@ link register save eliminated.
+  47 0000 0023     		movs	r3, #0
+  48 0002 0361     		str	r3, [r0, #16]
+  49 0004 7047     		bx	lr
+  51              		.section	.text.vListInsertEnd,"ax",%progbits
+  52              		.align	1
+  53              		.global	vListInsertEnd
+  54              		.syntax unified
+  55              		.thumb
+  56              		.thumb_func
+  58              	vListInsertEnd:
+  59              		@ args = 0, pretend = 0, frame = 0
+  60              		@ frame_needed = 0, uses_anonymous_args = 0
+  61              		@ link register save eliminated.
+  62 0000 4368     		ldr	r3, [r0, #4]
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s 			page 2
+
+
+  63 0002 4B60     		str	r3, [r1, #4]
+  64 0004 9A68     		ldr	r2, [r3, #8]
+  65 0006 8A60     		str	r2, [r1, #8]
+  66 0008 5160     		str	r1, [r2, #4]
+  67 000a 9960     		str	r1, [r3, #8]
+  68 000c 0861     		str	r0, [r1, #16]
+  69 000e 0368     		ldr	r3, [r0]
+  70 0010 0133     		adds	r3, r3, #1
+  71 0012 0360     		str	r3, [r0]
+  72 0014 7047     		bx	lr
+  74              		.section	.text.vListInsert,"ax",%progbits
+  75              		.align	1
+  76              		.global	vListInsert
+  77              		.syntax unified
+  78              		.thumb
+  79              		.thumb_func
+  81              	vListInsert:
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84              		@ link register save eliminated.
+  85 0000 30B4     		push	{r4, r5}
+  86 0002 0D68     		ldr	r5, [r1]
+  87 0004 B5F1FF3F 		cmp	r5, #-1
+  88 0008 11D0     		beq	.L9
+  89 000a 00F10803 		add	r3, r0, #8
+  90              	.L7:
+  91 000e 1C46     		mov	r4, r3
+  92 0010 5B68     		ldr	r3, [r3, #4]
+  93 0012 1A68     		ldr	r2, [r3]
+  94 0014 AA42     		cmp	r2, r5
+  95 0016 FAD9     		bls	.L7
+  96              	.L6:
+  97 0018 6368     		ldr	r3, [r4, #4]
+  98 001a 4B60     		str	r3, [r1, #4]
+  99 001c 9960     		str	r1, [r3, #8]
+ 100 001e 8C60     		str	r4, [r1, #8]
+ 101 0020 6160     		str	r1, [r4, #4]
+ 102 0022 0861     		str	r0, [r1, #16]
+ 103 0024 0368     		ldr	r3, [r0]
+ 104 0026 0133     		adds	r3, r3, #1
+ 105 0028 0360     		str	r3, [r0]
+ 106 002a 30BC     		pop	{r4, r5}
+ 107 002c 7047     		bx	lr
+ 108              	.L9:
+ 109 002e 0469     		ldr	r4, [r0, #16]
+ 110 0030 F2E7     		b	.L6
+ 112              		.section	.text.uxListRemove,"ax",%progbits
+ 113              		.align	1
+ 114              		.global	uxListRemove
+ 115              		.syntax unified
+ 116              		.thumb
+ 117              		.thumb_func
+ 119              	uxListRemove:
+ 120              		@ args = 0, pretend = 0, frame = 0
+ 121              		@ frame_needed = 0, uses_anonymous_args = 0
+ 122              		@ link register save eliminated.
+ 123 0000 0369     		ldr	r3, [r0, #16]
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s 			page 3
+
+
+ 124 0002 4168     		ldr	r1, [r0, #4]
+ 125 0004 8268     		ldr	r2, [r0, #8]
+ 126 0006 8A60     		str	r2, [r1, #8]
+ 127 0008 4168     		ldr	r1, [r0, #4]
+ 128 000a 5160     		str	r1, [r2, #4]
+ 129 000c 5A68     		ldr	r2, [r3, #4]
+ 130 000e 8242     		cmp	r2, r0
+ 131 0010 06D0     		beq	.L12
+ 132              	.L11:
+ 133 0012 0022     		movs	r2, #0
+ 134 0014 0261     		str	r2, [r0, #16]
+ 135 0016 1A68     		ldr	r2, [r3]
+ 136 0018 013A     		subs	r2, r2, #1
+ 137 001a 1A60     		str	r2, [r3]
+ 138 001c 1868     		ldr	r0, [r3]
+ 139 001e 7047     		bx	lr
+ 140              	.L12:
+ 141 0020 8268     		ldr	r2, [r0, #8]
+ 142 0022 5A60     		str	r2, [r3, #4]
+ 143 0024 F5E7     		b	.L11
+ 145              		.ident	"GCC: (GNU Tools for STM32 13.3.rel1.20240926-1715) 13.3.1 20240614"
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 list.c
+C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s:16     .text.vListInitialise:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s:22     .text.vListInitialise:00000000 vListInitialise
+C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s:37     .text.vListInitialiseItem:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s:43     .text.vListInitialiseItem:00000000 vListInitialiseItem
+C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s:52     .text.vListInsertEnd:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s:58     .text.vListInsertEnd:00000000 vListInsertEnd
+C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s:75     .text.vListInsert:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s:81     .text.vListInsert:00000000 vListInsert
+C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s:113    .text.uxListRemove:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccCRLE8c.s:119    .text.uxListRemove:00000000 uxListRemove
+
+NO UNDEFINED SYMBOLS

@@ -1,0 +1,686 @@
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"event_groups.c"
+  14              		.text
+  15              		.section	.text.prvTestWaitCondition,"ax",%progbits
+  16              		.align	1
+  17              		.syntax unified
+  18              		.thumb
+  19              		.thumb_func
+  21              	prvTestWaitCondition:
+  22              		@ args = 0, pretend = 0, frame = 0
+  23              		@ frame_needed = 0, uses_anonymous_args = 0
+  24              		@ link register save eliminated.
+  25 0000 1AB9     		cbnz	r2, .L2
+  26 0002 0842     		tst	r0, r1
+  27 0004 05D1     		bne	.L4
+  28 0006 1046     		mov	r0, r2
+  29 0008 7047     		bx	lr
+  30              	.L2:
+  31 000a 8143     		bics	r1, r1, r0
+  32 000c 03D0     		beq	.L5
+  33 000e 0020     		movs	r0, #0
+  34 0010 7047     		bx	lr
+  35              	.L4:
+  36 0012 0120     		movs	r0, #1
+  37 0014 7047     		bx	lr
+  38              	.L5:
+  39 0016 0120     		movs	r0, #1
+  40 0018 7047     		bx	lr
+  42              		.section	.text.xEventGroupCreateStatic,"ax",%progbits
+  43              		.align	1
+  44              		.global	xEventGroupCreateStatic
+  45              		.syntax unified
+  46              		.thumb
+  47              		.thumb_func
+  49              	xEventGroupCreateStatic:
+  50              		@ args = 0, pretend = 0, frame = 8
+  51              		@ frame_needed = 0, uses_anonymous_args = 0
+  52 0000 80B1     		cbz	r0, .L13
+  53 0002 10B5     		push	{r4, lr}
+  54 0004 82B0     		sub	sp, sp, #8
+  55 0006 0446     		mov	r4, r0
+  56 0008 1C23     		movs	r3, #28
+  57 000a 0193     		str	r3, [sp, #4]
+  58 000c 019B     		ldr	r3, [sp, #4]
+  59 000e 1C2B     		cmp	r3, #28
+  60 0010 11D0     		beq	.L9
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s 			page 2
+
+
+  61              		.syntax unified
+  62              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+  63 0012 4FF05003 			mov r3, #80												
+  64 0016 83F31188 		msr basepri, r3											
+  65 001a BFF36F8F 		isb														
+  66 001e BFF34F8F 		dsb														
+  67              	
+  68              	@ 0 "" 2
+  69              		.thumb
+  70              		.syntax unified
+  71              	.L10:
+  72 0022 FEE7     		b	.L10
+  73              	.L13:
+  74              		.syntax unified
+  75              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+  76 0024 4FF05003 			mov r3, #80												
+  77 0028 83F31188 		msr basepri, r3											
+  78 002c BFF36F8F 		isb														
+  79 0030 BFF34F8F 		dsb														
+  80              	
+  81              	@ 0 "" 2
+  82              		.thumb
+  83              		.syntax unified
+  84              	.L8:
+  85 0034 FEE7     		b	.L8
+  86              	.L9:
+  87 0036 0023     		movs	r3, #0
+  88 0038 40F8043B 		str	r3, [r0], #4
+  89 003c FFF7FEFF 		bl	vListInitialise
+  90 0040 0123     		movs	r3, #1
+  91 0042 2376     		strb	r3, [r4, #24]
+  92 0044 2046     		mov	r0, r4
+  93 0046 02B0     		add	sp, sp, #8
+  94              		@ sp needed
+  95 0048 10BD     		pop	{r4, pc}
+  97              		.section	.text.xEventGroupCreate,"ax",%progbits
+  98              		.align	1
+  99              		.global	xEventGroupCreate
+ 100              		.syntax unified
+ 101              		.thumb
+ 102              		.thumb_func
+ 104              	xEventGroupCreate:
+ 105              		@ args = 0, pretend = 0, frame = 0
+ 106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 107 0000 38B5     		push	{r3, r4, r5, lr}
+ 108 0002 1C20     		movs	r0, #28
+ 109 0004 FFF7FEFF 		bl	pvPortMalloc
+ 110 0008 0446     		mov	r4, r0
+ 111 000a 28B1     		cbz	r0, .L14
+ 112 000c 0025     		movs	r5, #0
+ 113 000e 40F8045B 		str	r5, [r0], #4
+ 114 0012 FFF7FEFF 		bl	vListInitialise
+ 115 0016 2576     		strb	r5, [r4, #24]
+ 116              	.L14:
+ 117 0018 2046     		mov	r0, r4
+ 118 001a 38BD     		pop	{r3, r4, r5, pc}
+ 120              		.section	.text.xEventGroupWaitBits,"ax",%progbits
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s 			page 3
+
+
+ 121              		.align	1
+ 122              		.global	xEventGroupWaitBits
+ 123              		.syntax unified
+ 124              		.thumb
+ 125              		.thumb_func
+ 127              	xEventGroupWaitBits:
+ 128              		@ args = 4, pretend = 0, frame = 0
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130 0000 88B1     		cbz	r0, .L38
+ 131 0002 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 132 0006 0C46     		mov	r4, r1
+ 133 0008 1646     		mov	r6, r2
+ 134 000a 1D46     		mov	r5, r3
+ 135 000c 0746     		mov	r7, r0
+ 136 000e B1F1807F 		cmp	r1, #16777216
+ 137 0012 11D3     		bcc	.L20
+ 138              		.syntax unified
+ 139              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 140 0014 4FF05003 			mov r3, #80												
+ 141 0018 83F31188 		msr basepri, r3											
+ 142 001c BFF36F8F 		isb														
+ 143 0020 BFF34F8F 		dsb														
+ 144              	
+ 145              	@ 0 "" 2
+ 146              		.thumb
+ 147              		.syntax unified
+ 148              	.L21:
+ 149 0024 FEE7     		b	.L21
+ 150              	.L38:
+ 151              		.syntax unified
+ 152              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 153 0026 4FF05003 			mov r3, #80												
+ 154 002a 83F31188 		msr basepri, r3											
+ 155 002e BFF36F8F 		isb														
+ 156 0032 BFF34F8F 		dsb														
+ 157              	
+ 158              	@ 0 "" 2
+ 159              		.thumb
+ 160              		.syntax unified
+ 161              	.L19:
+ 162 0036 FEE7     		b	.L19
+ 163              	.L20:
+ 164 0038 41B9     		cbnz	r1, .L22
+ 165              		.syntax unified
+ 166              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 167 003a 4FF05003 			mov r3, #80												
+ 168 003e 83F31188 		msr basepri, r3											
+ 169 0042 BFF36F8F 		isb														
+ 170 0046 BFF34F8F 		dsb														
+ 171              	
+ 172              	@ 0 "" 2
+ 173              		.thumb
+ 174              		.syntax unified
+ 175              	.L23:
+ 176 004a FEE7     		b	.L23
+ 177              	.L22:
+ 178 004c FFF7FEFF 		bl	xTaskGetSchedulerState
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s 			page 4
+
+
+ 179 0050 50B9     		cbnz	r0, .L24
+ 180 0052 069B     		ldr	r3, [sp, #24]
+ 181 0054 43B1     		cbz	r3, .L24
+ 182              		.syntax unified
+ 183              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 184 0056 4FF05003 			mov r3, #80												
+ 185 005a 83F31188 		msr basepri, r3											
+ 186 005e BFF36F8F 		isb														
+ 187 0062 BFF34F8F 		dsb														
+ 188              	
+ 189              	@ 0 "" 2
+ 190              		.thumb
+ 191              		.syntax unified
+ 192              	.L25:
+ 193 0066 FEE7     		b	.L25
+ 194              	.L24:
+ 195 0068 FFF7FEFF 		bl	vTaskSuspendAll
+ 196 006c D7F80080 		ldr	r8, [r7]
+ 197 0070 2A46     		mov	r2, r5
+ 198 0072 2146     		mov	r1, r4
+ 199 0074 4046     		mov	r0, r8
+ 200 0076 FFF7FEFF 		bl	prvTestWaitCondition
+ 201 007a F8B1     		cbz	r0, .L26
+ 202 007c 8EB3     		cbz	r6, .L34
+ 203 007e 28EA0403 		bic	r3, r8, r4
+ 204 0082 3B60     		str	r3, [r7]
+ 205 0084 0023     		movs	r3, #0
+ 206 0086 0693     		str	r3, [sp, #24]
+ 207              	.L27:
+ 208 0088 FFF7FEFF 		bl	xTaskResumeAll
+ 209 008c 069B     		ldr	r3, [sp, #24]
+ 210 008e 93B1     		cbz	r3, .L17
+ 211 0090 48B9     		cbnz	r0, .L31
+ 212 0092 4FF0E023 		mov	r3, #-536813568
+ 213 0096 4FF08052 		mov	r2, #268435456
+ 214 009a C3F8042D 		str	r2, [r3, #3332]
+ 215              		.syntax unified
+ 216              	@ 403 "Middlewares/Third_Party/FreeRTOS/Source/event_groups.c" 1
+ 217 009e BFF34F8F 		dsb
+ 218              	@ 0 "" 2
+ 219              	@ 403 "Middlewares/Third_Party/FreeRTOS/Source/event_groups.c" 1
+ 220 00a2 BFF36F8F 		isb
+ 221              	@ 0 "" 2
+ 222              		.thumb
+ 223              		.syntax unified
+ 224              	.L31:
+ 225 00a6 FFF7FEFF 		bl	uxTaskResetEventItemValue
+ 226 00aa 8046     		mov	r8, r0
+ 227 00ac 10F0007F 		tst	r0, #33554432
+ 228 00b0 1AD0     		beq	.L39
+ 229              	.L32:
+ 230 00b2 28F07F48 		bic	r8, r8, #-16777216
+ 231              	.L17:
+ 232 00b6 4046     		mov	r0, r8
+ 233 00b8 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 234              	.L26:
+ 235 00bc 069B     		ldr	r3, [sp, #24]
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s 			page 5
+
+
+ 236 00be 002B     		cmp	r3, #0
+ 237 00c0 E2D0     		beq	.L27
+ 238 00c2 5EB9     		cbnz	r6, .L35
+ 239 00c4 0021     		movs	r1, #0
+ 240              	.L28:
+ 241 00c6 0DB1     		cbz	r5, .L29
+ 242 00c8 41F08061 		orr	r1, r1, #67108864
+ 243              	.L29:
+ 244 00cc 069A     		ldr	r2, [sp, #24]
+ 245 00ce 2143     		orrs	r1, r1, r4
+ 246 00d0 381D     		adds	r0, r7, #4
+ 247 00d2 FFF7FEFF 		bl	vTaskPlaceOnUnorderedEventList
+ 248 00d6 4FF00008 		mov	r8, #0
+ 249 00da D5E7     		b	.L27
+ 250              	.L35:
+ 251 00dc 4FF08071 		mov	r1, #16777216
+ 252 00e0 F1E7     		b	.L28
+ 253              	.L34:
+ 254 00e2 0023     		movs	r3, #0
+ 255 00e4 0693     		str	r3, [sp, #24]
+ 256 00e6 CFE7     		b	.L27
+ 257              	.L39:
+ 258 00e8 FFF7FEFF 		bl	vPortEnterCritical
+ 259 00ec D7F80080 		ldr	r8, [r7]
+ 260 00f0 2A46     		mov	r2, r5
+ 261 00f2 2146     		mov	r1, r4
+ 262 00f4 4046     		mov	r0, r8
+ 263 00f6 FFF7FEFF 		bl	prvTestWaitCondition
+ 264 00fa 18B1     		cbz	r0, .L33
+ 265 00fc 16B1     		cbz	r6, .L33
+ 266 00fe 28EA0404 		bic	r4, r8, r4
+ 267 0102 3C60     		str	r4, [r7]
+ 268              	.L33:
+ 269 0104 FFF7FEFF 		bl	vPortExitCritical
+ 270 0108 D3E7     		b	.L32
+ 272              		.section	.text.xEventGroupClearBits,"ax",%progbits
+ 273              		.align	1
+ 274              		.global	xEventGroupClearBits
+ 275              		.syntax unified
+ 276              		.thumb
+ 277              		.thumb_func
+ 279              	xEventGroupClearBits:
+ 280              		@ args = 0, pretend = 0, frame = 0
+ 281              		@ frame_needed = 0, uses_anonymous_args = 0
+ 282 0000 70B1     		cbz	r0, .L47
+ 283 0002 70B5     		push	{r4, r5, r6, lr}
+ 284 0004 0C46     		mov	r4, r1
+ 285 0006 0546     		mov	r5, r0
+ 286 0008 B1F1807F 		cmp	r1, #16777216
+ 287 000c 11D3     		bcc	.L43
+ 288              		.syntax unified
+ 289              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 290 000e 4FF05003 			mov r3, #80												
+ 291 0012 83F31188 		msr basepri, r3											
+ 292 0016 BFF36F8F 		isb														
+ 293 001a BFF34F8F 		dsb														
+ 294              	
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s 			page 6
+
+
+ 295              	@ 0 "" 2
+ 296              		.thumb
+ 297              		.syntax unified
+ 298              	.L44:
+ 299 001e FEE7     		b	.L44
+ 300              	.L47:
+ 301              		.syntax unified
+ 302              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 303 0020 4FF05003 			mov r3, #80												
+ 304 0024 83F31188 		msr basepri, r3											
+ 305 0028 BFF36F8F 		isb														
+ 306 002c BFF34F8F 		dsb														
+ 307              	
+ 308              	@ 0 "" 2
+ 309              		.thumb
+ 310              		.syntax unified
+ 311              	.L42:
+ 312 0030 FEE7     		b	.L42
+ 313              	.L43:
+ 314 0032 FFF7FEFF 		bl	vPortEnterCritical
+ 315 0036 2E68     		ldr	r6, [r5]
+ 316 0038 26EA0404 		bic	r4, r6, r4
+ 317 003c 2C60     		str	r4, [r5]
+ 318 003e FFF7FEFF 		bl	vPortExitCritical
+ 319 0042 3046     		mov	r0, r6
+ 320 0044 70BD     		pop	{r4, r5, r6, pc}
+ 322              		.section	.text.xEventGroupGetBitsFromISR,"ax",%progbits
+ 323              		.align	1
+ 324              		.global	xEventGroupGetBitsFromISR
+ 325              		.syntax unified
+ 326              		.thumb
+ 327              		.thumb_func
+ 329              	xEventGroupGetBitsFromISR:
+ 330              		@ args = 0, pretend = 0, frame = 0
+ 331              		@ frame_needed = 0, uses_anonymous_args = 0
+ 332              		@ link register save eliminated.
+ 333              		.syntax unified
+ 334              	@ 213 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 335 0000 EFF31183 			mrs r3, basepri											
+ 336 0004 4FF05002 		mov r2, #80												
+ 337 0008 82F31188 		msr basepri, r2											
+ 338 000c BFF36F8F 		isb														
+ 339 0010 BFF34F8F 		dsb														
+ 340              	
+ 341              	@ 0 "" 2
+ 342              		.thumb
+ 343              		.syntax unified
+ 344 0014 0068     		ldr	r0, [r0]
+ 345              		.syntax unified
+ 346              	@ 231 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 347 0016 83F31188 			msr basepri, r3	
+ 348              	@ 0 "" 2
+ 349              		.thumb
+ 350              		.syntax unified
+ 351 001a 7047     		bx	lr
+ 353              		.section	.text.xEventGroupSetBits,"ax",%progbits
+ 354              		.align	1
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s 			page 7
+
+
+ 355              		.global	xEventGroupSetBits
+ 356              		.syntax unified
+ 357              		.thumb
+ 358              		.thumb_func
+ 360              	xEventGroupSetBits:
+ 361              		@ args = 0, pretend = 0, frame = 0
+ 362              		@ frame_needed = 0, uses_anonymous_args = 0
+ 363 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 364 0002 68B1     		cbz	r0, .L61
+ 365 0004 0D46     		mov	r5, r1
+ 366 0006 0446     		mov	r4, r0
+ 367 0008 B1F1807F 		cmp	r1, #16777216
+ 368 000c 11D3     		bcc	.L52
+ 369              		.syntax unified
+ 370              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 371 000e 4FF05003 			mov r3, #80												
+ 372 0012 83F31188 		msr basepri, r3											
+ 373 0016 BFF36F8F 		isb														
+ 374 001a BFF34F8F 		dsb														
+ 375              	
+ 376              	@ 0 "" 2
+ 377              		.thumb
+ 378              		.syntax unified
+ 379              	.L53:
+ 380 001e FEE7     		b	.L53
+ 381              	.L61:
+ 382              		.syntax unified
+ 383              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 384 0020 4FF05003 			mov r3, #80												
+ 385 0024 83F31188 		msr basepri, r3											
+ 386 0028 BFF36F8F 		isb														
+ 387 002c BFF34F8F 		dsb														
+ 388              	
+ 389              	@ 0 "" 2
+ 390              		.thumb
+ 391              		.syntax unified
+ 392              	.L51:
+ 393 0030 FEE7     		b	.L51
+ 394              	.L52:
+ 395 0032 00F10C06 		add	r6, r0, #12
+ 396 0036 FFF7FEFF 		bl	vTaskSuspendAll
+ 397 003a 2069     		ldr	r0, [r4, #16]
+ 398 003c 2368     		ldr	r3, [r4]
+ 399 003e 2B43     		orrs	r3, r3, r5
+ 400 0040 2360     		str	r3, [r4]
+ 401 0042 0027     		movs	r7, #0
+ 402 0044 0AE0     		b	.L54
+ 403              	.L55:
+ 404 0046 2168     		ldr	r1, [r4]
+ 405 0048 32EA0101 		bics	r1, r2, r1
+ 406 004c 05D1     		bne	.L57
+ 407 004e 11E0     		b	.L56
+ 408              	.L58:
+ 409 0050 2168     		ldr	r1, [r4]
+ 410 0052 41F00071 		orr	r1, r1, #33554432
+ 411 0056 FFF7FEFF 		bl	vTaskRemoveFromUnorderedEventList
+ 412              	.L57:
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s 			page 8
+
+
+ 413 005a 2846     		mov	r0, r5
+ 414              	.L54:
+ 415 005c B042     		cmp	r0, r6
+ 416 005e 0ED0     		beq	.L62
+ 417 0060 4568     		ldr	r5, [r0, #4]
+ 418 0062 0368     		ldr	r3, [r0]
+ 419 0064 23F07F42 		bic	r2, r3, #-16777216
+ 420 0068 13F0806F 		tst	r3, #67108864
+ 421 006c EBD1     		bne	.L55
+ 422 006e 2168     		ldr	r1, [r4]
+ 423 0070 1142     		tst	r1, r2
+ 424 0072 F2D0     		beq	.L57
+ 425              	.L56:
+ 426 0074 13F0807F 		tst	r3, #16777216
+ 427 0078 EAD0     		beq	.L58
+ 428 007a 1743     		orrs	r7, r7, r2
+ 429 007c E8E7     		b	.L58
+ 430              	.L62:
+ 431 007e 2368     		ldr	r3, [r4]
+ 432 0080 23EA0703 		bic	r3, r3, r7
+ 433 0084 2360     		str	r3, [r4]
+ 434 0086 FFF7FEFF 		bl	xTaskResumeAll
+ 435 008a 2068     		ldr	r0, [r4]
+ 436 008c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 438              		.section	.text.xEventGroupSync,"ax",%progbits
+ 439              		.align	1
+ 440              		.global	xEventGroupSync
+ 441              		.syntax unified
+ 442              		.thumb
+ 443              		.thumb_func
+ 445              	xEventGroupSync:
+ 446              		@ args = 0, pretend = 0, frame = 0
+ 447              		@ frame_needed = 0, uses_anonymous_args = 0
+ 448 0000 B2F1807F 		cmp	r2, #16777216
+ 449 0004 08D3     		bcc	.L64
+ 450              		.syntax unified
+ 451              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 452 0006 4FF05003 			mov r3, #80												
+ 453 000a 83F31188 		msr basepri, r3											
+ 454 000e BFF36F8F 		isb														
+ 455 0012 BFF34F8F 		dsb														
+ 456              	
+ 457              	@ 0 "" 2
+ 458              		.thumb
+ 459              		.syntax unified
+ 460              	.L65:
+ 461 0016 FEE7     		b	.L65
+ 462              	.L64:
+ 463 0018 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 464 001c 0746     		mov	r7, r0
+ 465 001e 0D46     		mov	r5, r1
+ 466 0020 1446     		mov	r4, r2
+ 467 0022 1E46     		mov	r6, r3
+ 468 0024 42B9     		cbnz	r2, .L66
+ 469              		.syntax unified
+ 470              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 471 0026 4FF05003 			mov r3, #80												
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s 			page 9
+
+
+ 472 002a 83F31188 		msr basepri, r3											
+ 473 002e BFF36F8F 		isb														
+ 474 0032 BFF34F8F 		dsb														
+ 475              	
+ 476              	@ 0 "" 2
+ 477              		.thumb
+ 478              		.syntax unified
+ 479              	.L67:
+ 480 0036 FEE7     		b	.L67
+ 481              	.L66:
+ 482 0038 FFF7FEFF 		bl	xTaskGetSchedulerState
+ 483 003c 48B9     		cbnz	r0, .L68
+ 484 003e 46B1     		cbz	r6, .L68
+ 485              		.syntax unified
+ 486              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 487 0040 4FF05003 			mov r3, #80												
+ 488 0044 83F31188 		msr basepri, r3											
+ 489 0048 BFF36F8F 		isb														
+ 490 004c BFF34F8F 		dsb														
+ 491              	
+ 492              	@ 0 "" 2
+ 493              		.thumb
+ 494              		.syntax unified
+ 495              	.L69:
+ 496 0050 FEE7     		b	.L69
+ 497              	.L68:
+ 498 0052 FFF7FEFF 		bl	vTaskSuspendAll
+ 499 0056 D7F80080 		ldr	r8, [r7]
+ 500 005a 2946     		mov	r1, r5
+ 501 005c 3846     		mov	r0, r7
+ 502 005e FFF7FEFF 		bl	xEventGroupSetBits
+ 503 0062 48EA0505 		orr	r5, r8, r5
+ 504 0066 34EA0503 		bics	r3, r4, r5
+ 505 006a 1AD0     		beq	.L79
+ 506 006c FEB9     		cbnz	r6, .L80
+ 507 006e 3D68     		ldr	r5, [r7]
+ 508              	.L71:
+ 509 0070 FFF7FEFF 		bl	xTaskResumeAll
+ 510 0074 96B1     		cbz	r6, .L63
+ 511 0076 48B9     		cbnz	r0, .L74
+ 512 0078 4FF0E023 		mov	r3, #-536813568
+ 513 007c 4FF08052 		mov	r2, #268435456
+ 514 0080 C3F8042D 		str	r2, [r3, #3332]
+ 515              		.syntax unified
+ 516              	@ 255 "Middlewares/Third_Party/FreeRTOS/Source/event_groups.c" 1
+ 517 0084 BFF34F8F 		dsb
+ 518              	@ 0 "" 2
+ 519              	@ 255 "Middlewares/Third_Party/FreeRTOS/Source/event_groups.c" 1
+ 520 0088 BFF36F8F 		isb
+ 521              	@ 0 "" 2
+ 522              		.thumb
+ 523              		.syntax unified
+ 524              	.L74:
+ 525 008c FFF7FEFF 		bl	uxTaskResetEventItemValue
+ 526 0090 0546     		mov	r5, r0
+ 527 0092 10F0007F 		tst	r0, #33554432
+ 528 0096 12D0     		beq	.L81
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s 			page 10
+
+
+ 529              	.L75:
+ 530 0098 25F07F45 		bic	r5, r5, #-16777216
+ 531              	.L63:
+ 532 009c 2846     		mov	r0, r5
+ 533 009e BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 534              	.L79:
+ 535 00a2 3B68     		ldr	r3, [r7]
+ 536 00a4 23EA0403 		bic	r3, r3, r4
+ 537 00a8 3B60     		str	r3, [r7]
+ 538 00aa 0026     		movs	r6, #0
+ 539 00ac E0E7     		b	.L71
+ 540              	.L80:
+ 541 00ae 3246     		mov	r2, r6
+ 542 00b0 44F0A061 		orr	r1, r4, #83886080
+ 543 00b4 381D     		adds	r0, r7, #4
+ 544 00b6 FFF7FEFF 		bl	vTaskPlaceOnUnorderedEventList
+ 545 00ba 0025     		movs	r5, #0
+ 546 00bc D8E7     		b	.L71
+ 547              	.L81:
+ 548 00be FFF7FEFF 		bl	vPortEnterCritical
+ 549 00c2 3D68     		ldr	r5, [r7]
+ 550 00c4 34EA0503 		bics	r3, r4, r5
+ 551 00c8 02D0     		beq	.L82
+ 552              	.L76:
+ 553 00ca FFF7FEFF 		bl	vPortExitCritical
+ 554 00ce E3E7     		b	.L75
+ 555              	.L82:
+ 556 00d0 25EA0404 		bic	r4, r5, r4
+ 557 00d4 3C60     		str	r4, [r7]
+ 558 00d6 F8E7     		b	.L76
+ 560              		.section	.text.vEventGroupDelete,"ax",%progbits
+ 561              		.align	1
+ 562              		.global	vEventGroupDelete
+ 563              		.syntax unified
+ 564              		.thumb
+ 565              		.thumb_func
+ 567              	vEventGroupDelete:
+ 568              		@ args = 0, pretend = 0, frame = 0
+ 569              		@ frame_needed = 0, uses_anonymous_args = 0
+ 570 0000 10B5     		push	{r4, lr}
+ 571 0002 0446     		mov	r4, r0
+ 572 0004 FFF7FEFF 		bl	vTaskSuspendAll
+ 573              	.L84:
+ 574 0008 6368     		ldr	r3, [r4, #4]
+ 575 000a 93B1     		cbz	r3, .L90
+ 576 000c 2069     		ldr	r0, [r4, #16]
+ 577 000e 04F10C03 		add	r3, r4, #12
+ 578 0012 9842     		cmp	r0, r3
+ 579 0014 04D0     		beq	.L91
+ 580 0016 4FF00071 		mov	r1, #33554432
+ 581 001a FFF7FEFF 		bl	vTaskRemoveFromUnorderedEventList
+ 582 001e F3E7     		b	.L84
+ 583              	.L91:
+ 584              		.syntax unified
+ 585              	@ 197 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" 1
+ 586 0020 4FF05003 			mov r3, #80												
+ 587 0024 83F31188 		msr basepri, r3											
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s 			page 11
+
+
+ 588 0028 BFF36F8F 		isb														
+ 589 002c BFF34F8F 		dsb														
+ 590              	
+ 591              	@ 0 "" 2
+ 592              		.thumb
+ 593              		.syntax unified
+ 594              	.L86:
+ 595 0030 FEE7     		b	.L86
+ 596              	.L90:
+ 597 0032 237E     		ldrb	r3, [r4, #24]	@ zero_extendqisi2
+ 598 0034 13B1     		cbz	r3, .L92
+ 599              	.L88:
+ 600 0036 FFF7FEFF 		bl	xTaskResumeAll
+ 601 003a 10BD     		pop	{r4, pc}
+ 602              	.L92:
+ 603 003c 2046     		mov	r0, r4
+ 604 003e FFF7FEFF 		bl	vPortFree
+ 605 0042 F8E7     		b	.L88
+ 607              		.section	.text.vEventGroupSetBitsCallback,"ax",%progbits
+ 608              		.align	1
+ 609              		.global	vEventGroupSetBitsCallback
+ 610              		.syntax unified
+ 611              		.thumb
+ 612              		.thumb_func
+ 614              	vEventGroupSetBitsCallback:
+ 615              		@ args = 0, pretend = 0, frame = 0
+ 616              		@ frame_needed = 0, uses_anonymous_args = 0
+ 617 0000 08B5     		push	{r3, lr}
+ 618 0002 FFF7FEFF 		bl	xEventGroupSetBits
+ 619 0006 08BD     		pop	{r3, pc}
+ 621              		.section	.text.vEventGroupClearBitsCallback,"ax",%progbits
+ 622              		.align	1
+ 623              		.global	vEventGroupClearBitsCallback
+ 624              		.syntax unified
+ 625              		.thumb
+ 626              		.thumb_func
+ 628              	vEventGroupClearBitsCallback:
+ 629              		@ args = 0, pretend = 0, frame = 0
+ 630              		@ frame_needed = 0, uses_anonymous_args = 0
+ 631 0000 08B5     		push	{r3, lr}
+ 632 0002 FFF7FEFF 		bl	xEventGroupClearBits
+ 633 0006 08BD     		pop	{r3, pc}
+ 635              		.ident	"GCC: (GNU Tools for STM32 13.3.rel1.20240926-1715) 13.3.1 20240614"
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 event_groups.c
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:16     .text.prvTestWaitCondition:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:21     .text.prvTestWaitCondition:00000000 prvTestWaitCondition
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:43     .text.xEventGroupCreateStatic:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:49     .text.xEventGroupCreateStatic:00000000 xEventGroupCreateStatic
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:98     .text.xEventGroupCreate:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:104    .text.xEventGroupCreate:00000000 xEventGroupCreate
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:121    .text.xEventGroupWaitBits:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:127    .text.xEventGroupWaitBits:00000000 xEventGroupWaitBits
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:273    .text.xEventGroupClearBits:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:279    .text.xEventGroupClearBits:00000000 xEventGroupClearBits
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:323    .text.xEventGroupGetBitsFromISR:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:329    .text.xEventGroupGetBitsFromISR:00000000 xEventGroupGetBitsFromISR
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:354    .text.xEventGroupSetBits:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:360    .text.xEventGroupSetBits:00000000 xEventGroupSetBits
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:439    .text.xEventGroupSync:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:445    .text.xEventGroupSync:00000000 xEventGroupSync
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:561    .text.vEventGroupDelete:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:567    .text.vEventGroupDelete:00000000 vEventGroupDelete
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:608    .text.vEventGroupSetBitsCallback:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:614    .text.vEventGroupSetBitsCallback:00000000 vEventGroupSetBitsCallback
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:622    .text.vEventGroupClearBitsCallback:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccOjDAY4.s:628    .text.vEventGroupClearBitsCallback:00000000 vEventGroupClearBitsCallback
+
+UNDEFINED SYMBOLS
+vListInitialise
+pvPortMalloc
+xTaskGetSchedulerState
+vTaskSuspendAll
+xTaskResumeAll
+uxTaskResetEventItemValue
+vTaskPlaceOnUnorderedEventList
+vPortEnterCritical
+vPortExitCritical
+vTaskRemoveFromUnorderedEventList
+vPortFree

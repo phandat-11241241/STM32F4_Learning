@@ -1,0 +1,61 @@
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\cc0Jsdsa.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"gpio.c"
+  14              		.text
+  15              		.section	.text.MX_GPIO_Init,"ax",%progbits
+  16              		.align	1
+  17              		.global	MX_GPIO_Init
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  22              	MX_GPIO_Init:
+  23              		@ args = 0, pretend = 0, frame = 8
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 82B0     		sub	sp, sp, #8
+  27 0002 0A4B     		ldr	r3, .L3
+  28 0004 9A69     		ldr	r2, [r3, #24]
+  29 0006 42F02002 		orr	r2, r2, #32
+  30 000a 9A61     		str	r2, [r3, #24]
+  31 000c 9A69     		ldr	r2, [r3, #24]
+  32 000e 02F02002 		and	r2, r2, #32
+  33 0012 0092     		str	r2, [sp]
+  34 0014 009A     		ldr	r2, [sp]
+  35 0016 9A69     		ldr	r2, [r3, #24]
+  36 0018 42F00402 		orr	r2, r2, #4
+  37 001c 9A61     		str	r2, [r3, #24]
+  38 001e 9B69     		ldr	r3, [r3, #24]
+  39 0020 03F00403 		and	r3, r3, #4
+  40 0024 0193     		str	r3, [sp, #4]
+  41 0026 019B     		ldr	r3, [sp, #4]
+  42 0028 02B0     		add	sp, sp, #8
+  43              		@ sp needed
+  44 002a 7047     		bx	lr
+  45              	.L4:
+  46              		.align	2
+  47              	.L3:
+  48 002c 00100240 		.word	1073876992
+  50              		.ident	"GCC: (GNU Tools for STM32 13.3.rel1.20240926-1715) 13.3.1 20240614"
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\cc0Jsdsa.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gpio.c
+C:\Users\datpt\AppData\Local\Temp\cc0Jsdsa.s:16     .text.MX_GPIO_Init:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\cc0Jsdsa.s:22     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\datpt\AppData\Local\Temp\cc0Jsdsa.s:48     .text.MX_GPIO_Init:0000002c $d
+
+NO UNDEFINED SYMBOLS
