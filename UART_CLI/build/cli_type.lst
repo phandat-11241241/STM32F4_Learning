@@ -1,0 +1,66 @@
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\cc80cE48.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"cli_type.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/cli_type.c"
+  18              		.global	cli_cmd_table
+  19              		.section	.rodata.str1.4,"aMS",%progbits,1
+  20              		.align	2
+  21              	.LC0:
+  22 0000 47455444 		.ascii	"GETDATA\000"
+  22      41544100 
+  23              		.section	.data.cli_cmd_table,"aw"
+  24              		.align	2
+  27              	cli_cmd_table:
+  28 0000 00000000 		.word	.LC0
+  29 0004 00000000 		.word	cli_get_data
+  30 0008 00000000 		.word	0
+  31 000c 00000000 		.word	0
+  32              		.global	cli_get_data
+  33              		.section	.rodata.str1.4
+  34              		.align	2
+  35              	.LC1:
+  36 0008 67657420 		.ascii	"get data funtion\000"
+  36      64617461 
+  36      2066756E 
+  36      74696F6E 
+  36      00
+  37              		.section	.data.cli_get_data,"aw"
+  38              		.align	2
+  41              	cli_get_data:
+  42 0000 00000000 		.word	get_data
+  43 0004 08000000 		.word	.LC1
+  44              		.text
+  45              	.Letext0:
+  46              		.file 2 "C:\\ST\\STM32CubeCLT_1.18.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+  47              		.file 3 "C:\\ST\\STM32CubeCLT_1.18.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+  48              		.file 4 "Core/Inc/cli_type.h"
+  49              		.file 5 "Core/Inc/sensor.h"
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\cc80cE48.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 cli_type.c
+C:\Users\datpt\AppData\Local\Temp\cc80cE48.s:27     .data.cli_cmd_table:00000000 cli_cmd_table
+C:\Users\datpt\AppData\Local\Temp\cc80cE48.s:20     .rodata.str1.4:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\cc80cE48.s:24     .data.cli_cmd_table:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\cc80cE48.s:41     .data.cli_get_data:00000000 cli_get_data
+C:\Users\datpt\AppData\Local\Temp\cc80cE48.s:38     .data.cli_get_data:00000000 $d
+
+UNDEFINED SYMBOLS
+get_data

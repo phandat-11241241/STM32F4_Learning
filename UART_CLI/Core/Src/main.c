@@ -23,7 +23,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdarg.h>
+#include "uart_ci.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -43,6 +44,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 
+/* USER CODE BEGIN PV */
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -53,12 +56,24 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void printf(const char *fmt, ...) {
+    char buf[128];
+    va_list args;
+    va_start(args, fmt);
+    int n = vsnprintf(buf, sizeof(buf), fmt, args);
+    va_end(args);
+    if (n > 0) {
+        if (n > sizeof(buf)) n = sizeof(buf);
+        HAL_UART_Transmit(&huart2, (uint8_t*)buf, n, HAL_MAX_DELAY);
+    }
+}
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-  if(huart->Instance == huart2.Instance){
-    uart_receive_check(data_rx);
-    HAL_UART_Receive_IT(&huart2, &data_rx, 1);
+  if (huart->Instance == huart2.Instance)
+  {
+    uart_rx_check(data_rx);
+    HAL_UART_Receive_IT(&huart2,(uint8_t *) &data_rx, 1);
   }
-  //HAL_UART_Transmit(&huart2, &data_rx,1,HAL_MAX_DELAY);
+  
 }
 /* USER CODE END 0 */
 
@@ -93,7 +108,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UART_Receive_IT(&huart2, &data_rx, 1);
+   HAL_UART_Receive_IT(&huart2,(uint8_t *) &data_rx, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -103,9 +118,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-    //HAL_UART_Receive_IT(&huart2, &data_rx, 1);
-    uart_hanlde();
+    uart_rx_handle();
 
   }
   /* USER CODE END 3 */

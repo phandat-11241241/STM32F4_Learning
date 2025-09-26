@@ -1,0 +1,291 @@
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccX47cEh.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"cli_command.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/cli_command.c"
+  18              		.section	.text.cli_find_cmd,"ax",%progbits
+  19              		.align	1
+  20              		.global	cli_find_cmd
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	cli_find_cmd:
+  26              	.LVL0:
+  27              	.LFB3:
+   1:Core/Src/cli_command.c **** 
+   2:Core/Src/cli_command.c **** #include "stdint.h"
+   3:Core/Src/cli_command.c **** #include "cli_command.h"
+   4:Core/Src/cli_command.c **** #include <stdio.h>
+   5:Core/Src/cli_command.c **** #include <sensor.h>
+   6:Core/Src/cli_command.c **** #include <string.h>
+   7:Core/Src/cli_command.c **** 
+   8:Core/Src/cli_command.c **** 
+   9:Core/Src/cli_command.c **** cli_cmd_infor_t *cli_find_cmd(char *cmd){
+  28              		.loc 1 9 41 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 9 41 is_stmt 0 view .LVU1
+  33 0000 70B5     		push	{r4, r5, r6, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 4, -16
+  37              		.cfi_offset 5, -12
+  38              		.cfi_offset 6, -8
+  39              		.cfi_offset 14, -4
+  40 0002 0646     		mov	r6, r0
+  10:Core/Src/cli_command.c ****     cli_cmd_entry_t *check = cli_cmd_table;
+  41              		.loc 1 10 5 is_stmt 1 view .LVU2
+  42              	.LVL1:
+  11:Core/Src/cli_command.c ****     while (check -> command_infor != NULL){
+  43              		.loc 1 11 5 view .LVU3
+  10:Core/Src/cli_command.c ****     cli_cmd_entry_t *check = cli_cmd_table;
+  44              		.loc 1 10 22 is_stmt 0 view .LVU4
+  45 0004 064C     		ldr	r4, .L7
+  46              		.loc 1 11 11 view .LVU5
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccX47cEh.s 			page 2
+
+
+  47 0006 00E0     		b	.L2
+  48              	.LVL2:
+  49              	.L6:
+  12:Core/Src/cli_command.c ****         if (strcmp(check->name, cmd) == 0){
+  13:Core/Src/cli_command.c ****             return check->command_infor;
+  14:Core/Src/cli_command.c ****         }
+  15:Core/Src/cli_command.c ****         check++;
+  50              		.loc 1 15 9 is_stmt 1 view .LVU6
+  51              		.loc 1 15 14 is_stmt 0 view .LVU7
+  52 0008 0834     		adds	r4, r4, #8
+  53              	.LVL3:
+  54              	.L2:
+  11:Core/Src/cli_command.c ****     while (check -> command_infor != NULL){
+  55              		.loc 1 11 35 is_stmt 1 view .LVU8
+  11:Core/Src/cli_command.c ****     while (check -> command_infor != NULL){
+  56              		.loc 1 11 18 is_stmt 0 view .LVU9
+  57 000a 6568     		ldr	r5, [r4, #4]
+  11:Core/Src/cli_command.c ****     while (check -> command_infor != NULL){
+  58              		.loc 1 11 35 view .LVU10
+  59 000c 2DB1     		cbz	r5, .L1
+  12:Core/Src/cli_command.c ****         if (strcmp(check->name, cmd) == 0){
+  60              		.loc 1 12 9 is_stmt 1 view .LVU11
+  12:Core/Src/cli_command.c ****         if (strcmp(check->name, cmd) == 0){
+  61              		.loc 1 12 13 is_stmt 0 view .LVU12
+  62 000e 3146     		mov	r1, r6
+  63 0010 2068     		ldr	r0, [r4]
+  64 0012 FFF7FEFF 		bl	strcmp
+  65              	.LVL4:
+  12:Core/Src/cli_command.c ****         if (strcmp(check->name, cmd) == 0){
+  66              		.loc 1 12 12 discriminator 1 view .LVU13
+  67 0016 0028     		cmp	r0, #0
+  68 0018 F6D1     		bne	.L6
+  69              	.L1:
+  16:Core/Src/cli_command.c ****     }
+  17:Core/Src/cli_command.c ****     return NULL;
+  18:Core/Src/cli_command.c **** }
+  70              		.loc 1 18 1 view .LVU14
+  71 001a 2846     		mov	r0, r5
+  72 001c 70BD     		pop	{r4, r5, r6, pc}
+  73              	.LVL5:
+  74              	.L8:
+  75              		.loc 1 18 1 view .LVU15
+  76 001e 00BF     		.align	2
+  77              	.L7:
+  78 0020 00000000 		.word	cli_cmd_table
+  79              		.cfi_endproc
+  80              	.LFE3:
+  82              		.section	.rodata.cli_excute.str1.4,"aMS",%progbits,1
+  83              		.align	2
+  84              	.LC0:
+  85 0000 2000     		.ascii	" \000"
+  86 0002 0000     		.align	2
+  87              	.LC1:
+  88 0004 45524F52 		.ascii	"ERORR\000"
+  88      5200
+  89 000a 0000     		.align	2
+  90              	.LC2:
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccX47cEh.s 			page 3
+
+
+  91 000c 257300   		.ascii	"%s\000"
+  92              		.section	.text.cli_excute,"ax",%progbits
+  93              		.align	1
+  94              		.global	cli_excute
+  95              		.syntax unified
+  96              		.thumb
+  97              		.thumb_func
+  99              	cli_excute:
+ 100              	.LVL6:
+ 101              	.LFB4:
+  19:Core/Src/cli_command.c **** 
+  20:Core/Src/cli_command.c **** void cli_excute(char *data_rx_buff, uint8_t data_rx_len){
+ 102              		.loc 1 20 57 is_stmt 1 view -0
+ 103              		.cfi_startproc
+ 104              		@ args = 0, pretend = 0, frame = 40
+ 105              		@ frame_needed = 0, uses_anonymous_args = 0
+ 106              		.loc 1 20 57 is_stmt 0 view .LVU17
+ 107 0000 10B5     		push	{r4, lr}
+ 108              	.LCFI1:
+ 109              		.cfi_def_cfa_offset 8
+ 110              		.cfi_offset 4, -8
+ 111              		.cfi_offset 14, -4
+ 112 0002 8AB0     		sub	sp, sp, #40
+ 113              	.LCFI2:
+ 114              		.cfi_def_cfa_offset 48
+  21:Core/Src/cli_command.c ****     char *cmd[10];
+ 115              		.loc 1 21 5 is_stmt 1 view .LVU18
+  22:Core/Src/cli_command.c ****     uint8_t cmd_len = 0;
+ 116              		.loc 1 22 5 view .LVU19
+ 117              	.LVL7:
+  23:Core/Src/cli_command.c ****     cli_cmd_infor_t *command;
+ 118              		.loc 1 23 5 view .LVU20
+  24:Core/Src/cli_command.c ****     char *token = strtok(data_rx_buff, " ");
+ 119              		.loc 1 24 5 view .LVU21
+ 120              		.loc 1 24 19 is_stmt 0 view .LVU22
+ 121 0004 1049     		ldr	r1, .L15
+ 122              	.LVL8:
+ 123              		.loc 1 24 19 view .LVU23
+ 124 0006 FFF7FEFF 		bl	strtok
+ 125              	.LVL9:
+  25:Core/Src/cli_command.c ****     while (token != NULL){
+ 126              		.loc 1 25 5 is_stmt 1 view .LVU24
+  22:Core/Src/cli_command.c ****     cli_cmd_infor_t *command;
+ 127              		.loc 1 22 13 is_stmt 0 view .LVU25
+ 128 000a 0024     		movs	r4, #0
+ 129              		.loc 1 25 11 view .LVU26
+ 130 000c 0AE0     		b	.L10
+ 131              	.LVL10:
+ 132              	.L11:
+  26:Core/Src/cli_command.c ****         cmd[cmd_len] = token;
+ 133              		.loc 1 26 9 is_stmt 1 view .LVU27
+ 134              		.loc 1 26 22 is_stmt 0 view .LVU28
+ 135 000e 0AAB     		add	r3, sp, #40
+ 136 0010 03EB8403 		add	r3, r3, r4, lsl #2
+ 137 0014 43F8280C 		str	r0, [r3, #-40]
+  27:Core/Src/cli_command.c ****         token = strtok(NULL, " "); 
+ 138              		.loc 1 27 9 is_stmt 1 view .LVU29
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccX47cEh.s 			page 4
+
+
+ 139              		.loc 1 27 17 is_stmt 0 view .LVU30
+ 140 0018 0B49     		ldr	r1, .L15
+ 141 001a 0020     		movs	r0, #0
+ 142              	.LVL11:
+ 143              		.loc 1 27 17 view .LVU31
+ 144 001c FFF7FEFF 		bl	strtok
+ 145              	.LVL12:
+  28:Core/Src/cli_command.c ****         cmd_len++;
+ 146              		.loc 1 28 9 is_stmt 1 view .LVU32
+ 147              		.loc 1 28 16 is_stmt 0 view .LVU33
+ 148 0020 0134     		adds	r4, r4, #1
+ 149              	.LVL13:
+ 150              		.loc 1 28 16 view .LVU34
+ 151 0022 E4B2     		uxtb	r4, r4
+ 152              	.LVL14:
+ 153              	.L10:
+  25:Core/Src/cli_command.c ****         cmd[cmd_len] = token;
+ 154              		.loc 1 25 18 is_stmt 1 view .LVU35
+ 155 0024 0028     		cmp	r0, #0
+ 156 0026 F2D1     		bne	.L11
+  29:Core/Src/cli_command.c ****     }
+  30:Core/Src/cli_command.c ****     command  = cli_find_cmd(cmd[0]);
+ 157              		.loc 1 30 5 view .LVU36
+ 158              		.loc 1 30 16 is_stmt 0 view .LVU37
+ 159 0028 0098     		ldr	r0, [sp]
+ 160              	.LVL15:
+ 161              		.loc 1 30 16 view .LVU38
+ 162 002a FFF7FEFF 		bl	cli_find_cmd
+ 163              	.LVL16:
+  31:Core/Src/cli_command.c ****     if(command != NULL ){
+ 164              		.loc 1 31 5 is_stmt 1 view .LVU39
+ 165              		.loc 1 31 7 is_stmt 0 view .LVU40
+ 166 002e 28B1     		cbz	r0, .L12
+  32:Core/Src/cli_command.c ****         command -> cli_function(cmd, cmd_len);
+ 167              		.loc 1 32 9 is_stmt 1 view .LVU41
+ 168              		.loc 1 32 17 is_stmt 0 view .LVU42
+ 169 0030 0368     		ldr	r3, [r0]
+ 170              		.loc 1 32 9 view .LVU43
+ 171 0032 2146     		mov	r1, r4
+ 172 0034 6846     		mov	r0, sp
+ 173              	.LVL17:
+ 174              		.loc 1 32 9 view .LVU44
+ 175 0036 9847     		blx	r3
+ 176              	.LVL18:
+ 177              	.L9:
+  33:Core/Src/cli_command.c ****     }
+  34:Core/Src/cli_command.c ****     else{
+  35:Core/Src/cli_command.c ****         printf("%s", "ERORR");
+  36:Core/Src/cli_command.c ****     }
+  37:Core/Src/cli_command.c **** }
+ 178              		.loc 1 37 1 view .LVU45
+ 179 0038 0AB0     		add	sp, sp, #40
+ 180              	.LCFI3:
+ 181              		.cfi_remember_state
+ 182              		.cfi_def_cfa_offset 8
+ 183              		@ sp needed
+ 184 003a 10BD     		pop	{r4, pc}
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccX47cEh.s 			page 5
+
+
+ 185              	.LVL19:
+ 186              	.L12:
+ 187              	.LCFI4:
+ 188              		.cfi_restore_state
+  35:Core/Src/cli_command.c ****     }
+ 189              		.loc 1 35 9 is_stmt 1 view .LVU46
+ 190 003c 0349     		ldr	r1, .L15+4
+ 191 003e 0448     		ldr	r0, .L15+8
+ 192              	.LVL20:
+  35:Core/Src/cli_command.c ****     }
+ 193              		.loc 1 35 9 is_stmt 0 view .LVU47
+ 194 0040 FFF7FEFF 		bl	printf
+ 195              	.LVL21:
+ 196              		.loc 1 37 1 view .LVU48
+ 197 0044 F8E7     		b	.L9
+ 198              	.L16:
+ 199 0046 00BF     		.align	2
+ 200              	.L15:
+ 201 0048 00000000 		.word	.LC0
+ 202 004c 04000000 		.word	.LC1
+ 203 0050 0C000000 		.word	.LC2
+ 204              		.cfi_endproc
+ 205              	.LFE4:
+ 207              		.text
+ 208              	.Letext0:
+ 209              		.file 2 "C:\\ST\\STM32CubeCLT_1.18.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 210              		.file 3 "C:\\ST\\STM32CubeCLT_1.18.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 211              		.file 4 "Core/Inc/cli_type.h"
+ 212              		.file 5 "C:\\ST\\STM32CubeCLT_1.18.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 213              		.file 6 "C:\\ST\\STM32CubeCLT_1.18.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccX47cEh.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 cli_command.c
+C:\Users\datpt\AppData\Local\Temp\ccX47cEh.s:19     .text.cli_find_cmd:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccX47cEh.s:25     .text.cli_find_cmd:00000000 cli_find_cmd
+C:\Users\datpt\AppData\Local\Temp\ccX47cEh.s:78     .text.cli_find_cmd:00000020 $d
+C:\Users\datpt\AppData\Local\Temp\ccX47cEh.s:83     .rodata.cli_excute.str1.4:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\ccX47cEh.s:93     .text.cli_excute:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccX47cEh.s:99     .text.cli_excute:00000000 cli_excute
+C:\Users\datpt\AppData\Local\Temp\ccX47cEh.s:201    .text.cli_excute:00000048 $d
+
+UNDEFINED SYMBOLS
+strcmp
+cli_cmd_table
+strtok
+printf

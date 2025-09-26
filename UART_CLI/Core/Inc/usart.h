@@ -35,15 +35,13 @@ extern "C" {
 extern UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN Private defines */
-extern uint8_t data_rx;
 
 /* USER CODE END Private defines */
 
 void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-void uart_hanlde(void);
-void uart_receive_check(uint8_t data_rx);
+
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

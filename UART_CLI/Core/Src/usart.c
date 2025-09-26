@@ -21,15 +21,10 @@
 #include "usart.h"
 
 /* USER CODE BEGIN 0 */
-#define MAX_DATA_LEN 100
 
+/* USER CODE END 0 */
 
 UART_HandleTypeDef huart2;
-uint8_t data_rx ;
-uint8_t data_len;
-uint8_t data_buff[MAX_DATA_LEN];
-uint8_t data_rev_flag; 
-/* USER CODE END 0 */
 
 /* USART2 init function */
 
@@ -89,7 +84,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     /* USART2 interrupt Init */
-    HAL_NVIC_SetPriority(USART2_IRQn, 2, 0);
+    HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(USART2_IRQn);
   /* USER CODE BEGIN USART2_MspInit 1 */
 
@@ -123,26 +118,5 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
-void uart_receive_check(uint8_t data_rx){
-  if(data_rx == 's' ){
-    data_rev_flag = 1 ;
-  }
-  else{
-     data_buff[data_len++] = data_rx; 
-  }
-}
 
-
-void uart_hanlde(void){
-  if(data_rev_flag == 1  ){
-    uint8_t rep[] = "HI";
-    HAL_UART_Transmit(&huart2, rep, sizeof(rep), HAL_MAX_DELAY);
-    data_rev_flag = 0;
-    data_len = 0;
-  }
-  else{
-    // uint8_t bus[] = "1";
-    // HAL_UART_Transmit(&huart2,bus, sizeof(bus), HAL_MAX_DELAY);
-  }
-}
 /* USER CODE END 1 */

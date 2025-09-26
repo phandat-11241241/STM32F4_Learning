@@ -1,0 +1,199 @@
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccb5L7X6.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"sensor.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/sensor.c"
+  18              		.section	.rodata.get_data.str1.4,"aMS",%progbits,1
+  19              		.align	2
+  20              	.LC0:
+  21 0000 546F206D 		.ascii	"To much agrument\000"
+  21      75636820 
+  21      61677275 
+  21      6D656E74 
+  21      00
+  22 0011 000000   		.align	2
+  23              	.LC1:
+  24 0014 257300   		.ascii	"%s\000"
+  25 0017 00       		.align	2
+  26              	.LC2:
+  27 0018 4E6F7420 		.ascii	"Not enoung agrument\000"
+  27      656E6F75 
+  27      6E672061 
+  27      6772756D 
+  27      656E7400 
+  28              		.align	2
+  29              	.LC3:
+  30 002c 47657420 		.ascii	"Get data success \000"
+  30      64617461 
+  30      20737563 
+  30      63657373 
+  30      2000
+  31 003e 0000     		.align	2
+  32              	.LC4:
+  33 0040 48454C4C 		.ascii	"HELLO \000"
+  33      4F2000
+  34              		.section	.text.get_data,"ax",%progbits
+  35              		.align	1
+  36              		.global	get_data
+  37              		.syntax unified
+  38              		.thumb
+  39              		.thumb_func
+  41              	get_data:
+  42              	.LVL0:
+  43              	.LFB68:
+   1:Core/Src/sensor.c **** #include "uart_ci.h"
+   2:Core/Src/sensor.c **** #include "stdint.h"
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccb5L7X6.s 			page 2
+
+
+   3:Core/Src/sensor.c **** #include "usart.h"
+   4:Core/Src/sensor.c **** #include <stdio.h>
+   5:Core/Src/sensor.c **** #include <sensor.h>
+   6:Core/Src/sensor.c **** #include <string.h>
+   7:Core/Src/sensor.c **** void get_data(char **cmd, uint8_t cmd_len){
+  44              		.loc 1 7 43 view -0
+  45              		.cfi_startproc
+  46              		@ args = 0, pretend = 0, frame = 0
+  47              		@ frame_needed = 0, uses_anonymous_args = 0
+  48              		.loc 1 7 43 is_stmt 0 view .LVU1
+  49 0000 10B5     		push	{r4, lr}
+  50              	.LCFI0:
+  51              		.cfi_def_cfa_offset 8
+  52              		.cfi_offset 4, -8
+  53              		.cfi_offset 14, -4
+  54 0002 0446     		mov	r4, r0
+   8:Core/Src/sensor.c ****         if(cmd_len  > 2 ){
+  55              		.loc 1 8 9 is_stmt 1 view .LVU2
+  56              		.loc 1 8 11 is_stmt 0 view .LVU3
+  57 0004 0229     		cmp	r1, #2
+  58 0006 0BD8     		bhi	.L7
+   9:Core/Src/sensor.c ****             printf("%s","To much agrument");
+  10:Core/Src/sensor.c ****         }
+  11:Core/Src/sensor.c ****         else if(cmd_len  < 2 ){
+  59              		.loc 1 11 14 is_stmt 1 view .LVU4
+  60              		.loc 1 11 16 is_stmt 0 view .LVU5
+  61 0008 0129     		cmp	r1, #1
+  62 000a 0ED9     		bls	.L8
+  12:Core/Src/sensor.c ****             printf("%s","Not enoung agrument");
+  13:Core/Src/sensor.c ****         }
+  14:Core/Src/sensor.c ****         else{
+  15:Core/Src/sensor.c ****              printf("%s", "Get data success ");
+  63              		.loc 1 15 14 is_stmt 1 view .LVU6
+  64 000c 0C49     		ldr	r1, .L10
+  65              	.LVL1:
+  66              		.loc 1 15 14 is_stmt 0 view .LVU7
+  67 000e 0D48     		ldr	r0, .L10+4
+  68              	.LVL2:
+  69              		.loc 1 15 14 view .LVU8
+  70 0010 FFF7FEFF 		bl	printf
+  71              	.LVL3:
+  72              	.L3:
+  16:Core/Src/sensor.c ****              
+  17:Core/Src/sensor.c ****         }
+  18:Core/Src/sensor.c ****         if(atoi(cmd[1]) == 2){
+  73              		.loc 1 18 9 is_stmt 1 view .LVU9
+  74              	.LBB2:
+  75              		.loc 1 18 12 is_stmt 0 view .LVU10
+  76 0014 6068     		ldr	r0, [r4, #4]
+  77 0016 FFF7FEFF 		bl	atoi
+  78              	.LVL4:
+  79              		.loc 1 18 11 discriminator 1 view .LVU11
+  80 001a 0228     		cmp	r0, #2
+  81 001c 0AD0     		beq	.L9
+  82              	.L1:
+  83              	.LBE2:
+  19:Core/Src/sensor.c ****             printf("%s", "HELLO ");
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccb5L7X6.s 			page 3
+
+
+  20:Core/Src/sensor.c ****         }
+  21:Core/Src/sensor.c **** }
+  84              		.loc 1 21 1 view .LVU12
+  85 001e 10BD     		pop	{r4, pc}
+  86              	.LVL5:
+  87              	.L7:
+   9:Core/Src/sensor.c ****         }
+  88              		.loc 1 9 13 is_stmt 1 view .LVU13
+  89 0020 0949     		ldr	r1, .L10+8
+  90              	.LVL6:
+   9:Core/Src/sensor.c ****         }
+  91              		.loc 1 9 13 is_stmt 0 view .LVU14
+  92 0022 0848     		ldr	r0, .L10+4
+  93              	.LVL7:
+   9:Core/Src/sensor.c ****         }
+  94              		.loc 1 9 13 view .LVU15
+  95 0024 FFF7FEFF 		bl	printf
+  96              	.LVL8:
+  97 0028 F4E7     		b	.L3
+  98              	.LVL9:
+  99              	.L8:
+  12:Core/Src/sensor.c ****         }
+ 100              		.loc 1 12 13 is_stmt 1 view .LVU16
+ 101 002a 0849     		ldr	r1, .L10+12
+ 102              	.LVL10:
+  12:Core/Src/sensor.c ****         }
+ 103              		.loc 1 12 13 is_stmt 0 view .LVU17
+ 104 002c 0548     		ldr	r0, .L10+4
+ 105              	.LVL11:
+  12:Core/Src/sensor.c ****         }
+ 106              		.loc 1 12 13 view .LVU18
+ 107 002e FFF7FEFF 		bl	printf
+ 108              	.LVL12:
+ 109 0032 EFE7     		b	.L3
+ 110              	.L9:
+ 111              	.LBB3:
+  19:Core/Src/sensor.c ****             printf("%s", "HELLO ");
+ 112              		.loc 1 19 13 is_stmt 1 view .LVU19
+ 113 0034 0649     		ldr	r1, .L10+16
+ 114 0036 0348     		ldr	r0, .L10+4
+ 115 0038 FFF7FEFF 		bl	printf
+ 116              	.LVL13:
+ 117              	.LBE3:
+ 118              		.loc 1 21 1 is_stmt 0 view .LVU20
+ 119 003c EFE7     		b	.L1
+ 120              	.L11:
+ 121 003e 00BF     		.align	2
+ 122              	.L10:
+ 123 0040 2C000000 		.word	.LC3
+ 124 0044 14000000 		.word	.LC1
+ 125 0048 00000000 		.word	.LC0
+ 126 004c 18000000 		.word	.LC2
+ 127 0050 40000000 		.word	.LC4
+ 128              		.cfi_endproc
+ 129              	.LFE68:
+ 131              		.text
+ 132              	.Letext0:
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccb5L7X6.s 			page 4
+
+
+ 133              		.file 2 "C:\\ST\\STM32CubeCLT_1.18.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 134              		.file 3 "C:\\ST\\STM32CubeCLT_1.18.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 135              		.file 4 "C:\\ST\\STM32CubeCLT_1.18.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccb5L7X6.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 sensor.c
+C:\Users\datpt\AppData\Local\Temp\ccb5L7X6.s:19     .rodata.get_data.str1.4:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\ccb5L7X6.s:35     .text.get_data:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccb5L7X6.s:41     .text.get_data:00000000 get_data
+C:\Users\datpt\AppData\Local\Temp\ccb5L7X6.s:123    .text.get_data:00000040 $d
+
+UNDEFINED SYMBOLS
+printf
+atoi

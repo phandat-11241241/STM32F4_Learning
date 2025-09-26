@@ -1,0 +1,229 @@
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"uart_ci.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/uart_ci.c"
+  18              		.section	.text.uart_rx_check,"ax",%progbits
+  19              		.align	1
+  20              		.global	uart_rx_check
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	uart_rx_check:
+  26              	.LVL0:
+  27              	.LFB68:
+   1:Core/Src/uart_ci.c **** #include "uart_ci.h"
+   2:Core/Src/uart_ci.c **** #include "stdint.h"
+   3:Core/Src/uart_ci.c **** #include "usart.h"
+   4:Core/Src/uart_ci.c **** #include <stdio.h>
+   5:Core/Src/uart_ci.c **** #include "cli_command.h"
+   6:Core/Src/uart_ci.c **** #define UART_BUFF_MAX_LEN 100
+   7:Core/Src/uart_ci.c **** 
+   8:Core/Src/uart_ci.c **** char data_rx_buff[UART_BUFF_MAX_LEN];
+   9:Core/Src/uart_ci.c **** uint8_t data_len;
+  10:Core/Src/uart_ci.c **** uint8_t rx_flag;
+  11:Core/Src/uart_ci.c **** char data_rx;
+  12:Core/Src/uart_ci.c **** 
+  13:Core/Src/uart_ci.c **** void uart_rx_check(char data_rx){
+  28              		.loc 1 13 33 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  14:Core/Src/uart_ci.c ****     if(data_rx == '\r' || data_rx == '\n'){
+  33              		.loc 1 14 5 view .LVU1
+  34              		.loc 1 14 7 is_stmt 0 view .LVU2
+  35 0000 0D28     		cmp	r0, #13
+  36 0002 08D0     		beq	.L2
+  37              		.loc 1 14 24 discriminator 1 view .LVU3
+  38 0004 0A28     		cmp	r0, #10
+  39 0006 06D0     		beq	.L2
+  15:Core/Src/uart_ci.c ****         if (data_len > 0) {                  
+  16:Core/Src/uart_ci.c ****             data_rx_buff[data_len] = '\0';   
+  17:Core/Src/uart_ci.c ****             rx_flag = 1;
+  18:Core/Src/uart_ci.c ****         }       
+  19:Core/Src/uart_ci.c ****     }
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s 			page 2
+
+
+  20:Core/Src/uart_ci.c ****     else{
+  21:Core/Src/uart_ci.c ****         data_rx_buff[data_len++] = data_rx;
+  40              		.loc 1 21 9 is_stmt 1 view .LVU4
+  41              		.loc 1 21 30 is_stmt 0 view .LVU5
+  42 0008 084A     		ldr	r2, .L5
+  43 000a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  44 000c 591C     		adds	r1, r3, #1
+  45 000e 1170     		strb	r1, [r2]
+  46              		.loc 1 21 34 view .LVU6
+  47 0010 074A     		ldr	r2, .L5+4
+  48 0012 D054     		strb	r0, [r2, r3]
+  49              	.L1:
+  22:Core/Src/uart_ci.c ****     }
+  23:Core/Src/uart_ci.c **** }
+  50              		.loc 1 23 1 view .LVU7
+  51 0014 7047     		bx	lr
+  52              	.L2:
+  15:Core/Src/uart_ci.c ****         if (data_len > 0) {                  
+  53              		.loc 1 15 9 is_stmt 1 view .LVU8
+  15:Core/Src/uart_ci.c ****         if (data_len > 0) {                  
+  54              		.loc 1 15 22 is_stmt 0 view .LVU9
+  55 0016 054B     		ldr	r3, .L5
+  56 0018 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  15:Core/Src/uart_ci.c ****         if (data_len > 0) {                  
+  57              		.loc 1 15 12 view .LVU10
+  58 001a 002B     		cmp	r3, #0
+  59 001c FAD0     		beq	.L1
+  16:Core/Src/uart_ci.c ****             rx_flag = 1;
+  60              		.loc 1 16 13 is_stmt 1 view .LVU11
+  16:Core/Src/uart_ci.c ****             rx_flag = 1;
+  61              		.loc 1 16 36 is_stmt 0 view .LVU12
+  62 001e 044A     		ldr	r2, .L5+4
+  63 0020 0021     		movs	r1, #0
+  64 0022 D154     		strb	r1, [r2, r3]
+  17:Core/Src/uart_ci.c ****         }       
+  65              		.loc 1 17 13 is_stmt 1 view .LVU13
+  17:Core/Src/uart_ci.c ****         }       
+  66              		.loc 1 17 21 is_stmt 0 view .LVU14
+  67 0024 034B     		ldr	r3, .L5+8
+  68 0026 0122     		movs	r2, #1
+  69 0028 1A70     		strb	r2, [r3]
+  70 002a 7047     		bx	lr
+  71              	.L6:
+  72              		.align	2
+  73              	.L5:
+  74 002c 00000000 		.word	data_len
+  75 0030 00000000 		.word	data_rx_buff
+  76 0034 00000000 		.word	rx_flag
+  77              		.cfi_endproc
+  78              	.LFE68:
+  80              		.section	.text.uart_rx_handle,"ax",%progbits
+  81              		.align	1
+  82              		.global	uart_rx_handle
+  83              		.syntax unified
+  84              		.thumb
+  85              		.thumb_func
+  87              	uart_rx_handle:
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s 			page 3
+
+
+  88              	.LFB69:
+  24:Core/Src/uart_ci.c **** 
+  25:Core/Src/uart_ci.c **** void uart_rx_handle(void){
+  89              		.loc 1 25 26 is_stmt 1 view -0
+  90              		.cfi_startproc
+  91              		@ args = 0, pretend = 0, frame = 0
+  92              		@ frame_needed = 0, uses_anonymous_args = 0
+  26:Core/Src/uart_ci.c ****     if(rx_flag == 1 ){
+  93              		.loc 1 26 5 view .LVU16
+  94              		.loc 1 26 16 is_stmt 0 view .LVU17
+  95 0000 074B     		ldr	r3, .L14
+  96 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  97              		.loc 1 26 7 view .LVU18
+  98 0004 012B     		cmp	r3, #1
+  99 0006 00D0     		beq	.L13
+ 100 0008 7047     		bx	lr
+ 101              	.L13:
+  25:Core/Src/uart_ci.c ****     if(rx_flag == 1 ){
+ 102              		.loc 1 25 26 view .LVU19
+ 103 000a 10B5     		push	{r4, lr}
+ 104              	.LCFI0:
+ 105              		.cfi_def_cfa_offset 8
+ 106              		.cfi_offset 4, -8
+ 107              		.cfi_offset 14, -4
+  27:Core/Src/uart_ci.c ****         cli_excute(data_rx_buff, data_len);
+ 108              		.loc 1 27 9 is_stmt 1 view .LVU20
+ 109 000c 054C     		ldr	r4, .L14+4
+ 110 000e 2178     		ldrb	r1, [r4]	@ zero_extendqisi2
+ 111 0010 0548     		ldr	r0, .L14+8
+ 112 0012 FFF7FEFF 		bl	cli_excute
+ 113              	.LVL1:
+  28:Core/Src/uart_ci.c ****         data_len = 0;
+ 114              		.loc 1 28 9 view .LVU21
+ 115              		.loc 1 28 18 is_stmt 0 view .LVU22
+ 116 0016 0023     		movs	r3, #0
+ 117 0018 2370     		strb	r3, [r4]
+  29:Core/Src/uart_ci.c ****         rx_flag = 0;
+ 118              		.loc 1 29 9 is_stmt 1 view .LVU23
+ 119              		.loc 1 29 17 is_stmt 0 view .LVU24
+ 120 001a 014A     		ldr	r2, .L14
+ 121 001c 1370     		strb	r3, [r2]
+  30:Core/Src/uart_ci.c ****     }
+  31:Core/Src/uart_ci.c **** 
+  32:Core/Src/uart_ci.c **** }...
+ 122              		.loc 1 32 1 view .LVU25
+ 123 001e 10BD     		pop	{r4, pc}
+ 124              	.L15:
+ 125              		.align	2
+ 126              	.L14:
+ 127 0020 00000000 		.word	rx_flag
+ 128 0024 00000000 		.word	data_len
+ 129 0028 00000000 		.word	data_rx_buff
+ 130              		.cfi_endproc
+ 131              	.LFE69:
+ 133              		.global	data_rx
+ 134              		.section	.bss.data_rx,"aw",%nobits
+ 137              	data_rx:
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s 			page 4
+
+
+ 138 0000 00       		.space	1
+ 139              		.global	rx_flag
+ 140              		.section	.bss.rx_flag,"aw",%nobits
+ 143              	rx_flag:
+ 144 0000 00       		.space	1
+ 145              		.global	data_len
+ 146              		.section	.bss.data_len,"aw",%nobits
+ 149              	data_len:
+ 150 0000 00       		.space	1
+ 151              		.global	data_rx_buff
+ 152              		.section	.bss.data_rx_buff,"aw",%nobits
+ 153              		.align	2
+ 156              	data_rx_buff:
+ 157 0000 00000000 		.space	100
+ 157      00000000 
+ 157      00000000 
+ 157      00000000 
+ 157      00000000 
+ 158              		.text
+ 159              	.Letext0:
+ 160              		.file 2 "C:\\ST\\STM32CubeCLT_1.18.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 161              		.file 3 "C:\\ST\\STM32CubeCLT_1.18.0\\GNU-tools-for-STM32\\bin\\../lib/gcc/arm-none-eabi/13.3.1/..
+ 162              		.file 4 "Core/Inc/uart_ci.h"
+ 163              		.file 5 "Core/Inc/cli_command.h"
+ARM GAS  C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 uart_ci.c
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:19     .text.uart_rx_check:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:25     .text.uart_rx_check:00000000 uart_rx_check
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:74     .text.uart_rx_check:0000002c $d
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:149    .bss.data_len:00000000 data_len
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:156    .bss.data_rx_buff:00000000 data_rx_buff
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:143    .bss.rx_flag:00000000 rx_flag
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:81     .text.uart_rx_handle:00000000 $t
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:87     .text.uart_rx_handle:00000000 uart_rx_handle
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:127    .text.uart_rx_handle:00000020 $d
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:137    .bss.data_rx:00000000 data_rx
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:138    .bss.data_rx:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:144    .bss.rx_flag:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:150    .bss.data_len:00000000 $d
+C:\Users\datpt\AppData\Local\Temp\ccu6PbL0.s:153    .bss.data_rx_buff:00000000 $d
+
+UNDEFINED SYMBOLS
+cli_excute
